@@ -1,4 +1,4 @@
-package com.example.android.marsrealestate
+package com.example.android.proximo
 
 import android.Manifest
 import android.content.Context
@@ -19,7 +19,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.example.android.marsrealestate.databinding.ActivityMainBinding
+import com.example.android.proximo.databinding.ActivityMainBinding
 import com.google.android.gms.location.*
 import java.util.*
 
@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
                         val cityName = addresses[0].locality
                         val stateName = addresses[0].adminArea
 
-                        Log.d("debug", "HERE ${addresses}")
+
+                        Log.d("debug", "HERE $addresses")
                     }
                 }
             } else {
@@ -87,8 +88,6 @@ class MainActivity : AppCompatActivity() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation: Location = locationResult.lastLocation
             Log.d("debug", "mLastLocation $mLastLocation")
-
-
         }
     }
 
@@ -110,7 +109,6 @@ class MainActivity : AppCompatActivity() {
     private fun requestPermissions() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_ID)
     }
-
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (requestCode == PERMISSION_ID) {

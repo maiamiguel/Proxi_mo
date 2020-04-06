@@ -1,12 +1,12 @@
-package com.example.android.marsrealestate.overview
+package com.example.android.proximo.overview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.marsrealestate.databinding.GridViewItemBinding
-import com.example.android.marsrealestate.models.Service
+import com.example.android.proximo.databinding.GridViewItemBinding
+import com.example.android.proximo.models.Service
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]

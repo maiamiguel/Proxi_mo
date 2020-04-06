@@ -1,12 +1,12 @@
-package com.example.android.marsrealestate.overview
+package com.example.android.proximo.overview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.marsrealestate.R
-import com.example.android.marsrealestate.models.Service
-import com.example.android.marsrealestate.network.MarsApiFilter
-import com.example.android.marsrealestate.network.MarsProperty
+import com.example.android.proximo.R
+import com.example.android.proximo.models.Service
+import com.example.android.proximo.network.MarsApiFilter
+import com.example.android.proximo.network.MarsProperty
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 /**

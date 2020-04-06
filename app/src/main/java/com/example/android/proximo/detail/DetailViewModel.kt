@@ -1,11 +1,11 @@
-package com.example.android.marsrealestate.detail
+package com.example.android.proximo.detail
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.marsrealestate.models.Service
+import com.example.android.proximo.models.Service
 
 /**
  *  The [ViewModel] associated with the [DetailFragment], containing information about the selected

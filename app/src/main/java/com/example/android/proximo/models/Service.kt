@@ -1,4 +1,4 @@
-package com.example.android.marsrealestate.models
+package com.example.android.proximo.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

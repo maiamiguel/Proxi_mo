@@ -1,8 +1,8 @@
-package com.example.android.marsrealestate.network
+package com.example.android.proximo.network
 
 import android.os.Parcelable
 import androidx.lifecycle.LiveData
-import com.example.android.marsrealestate.overview.MarsApiStatus
+import com.example.android.proximo.overview.MarsApiStatus
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 

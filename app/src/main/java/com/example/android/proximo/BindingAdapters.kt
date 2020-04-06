@@ -1,4 +1,4 @@
-package com.example.android.marsrealestate
+package com.example.android.proximo
 
 import android.view.View
 import android.widget.ImageView
@@ -7,9 +7,9 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.android.marsrealestate.models.Service
-import com.example.android.marsrealestate.overview.MarsApiStatus
-import com.example.android.marsrealestate.overview.PhotoGridAdapter
+import com.example.android.proximo.models.Service
+import com.example.android.proximo.overview.MarsApiStatus
+import com.example.android.proximo.overview.PhotoGridAdapter
 
 /**
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
