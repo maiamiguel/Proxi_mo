@@ -1,4 +1,4 @@
-package com.example.android.proximo.detail
+package com.example.android.proximo.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -14,10 +14,10 @@ import com.example.android.proximo.models.TypesOfServices
  */
 class DetailViewModel(selectedTypesOfServices: TypesOfServices, app: Application) : AndroidViewModel(app) {
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedProperty = MutableLiveData<TypesOfServices>()
+    private val _navigateToSelectedProperty = MutableLiveData<Service>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<TypesOfServices>
+    val navigateToSelectedProperty: LiveData<Service>
         get() = _navigateToSelectedProperty
 
 
@@ -46,11 +46,11 @@ class DetailViewModel(selectedTypesOfServices: TypesOfServices, app: Application
         _services.value = servicesList
     }
 
-    fun displayServiceDetails(selectedTypesOfServices: Service) {
-        //_navigateToSelectedProperty.value = selectedTypesOfServices
+    fun displayServiceDetails(selectedService: Service) {
+        _navigateToSelectedProperty.value = selectedService
     }
 
     fun displayServiceDetailsComplete() {
-        //_navigateToSelectedProperty.value = null
+        _navigateToSelectedProperty.value = null
     }
 }

@@ -1,4 +1,4 @@
-package com.example.android.proximo
+package com.example.android.proximo.ui
 
 import android.Manifest
 import android.content.Context
@@ -19,6 +19,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.example.android.proximo.R
 import com.example.android.proximo.databinding.ActivityMainBinding
 import com.google.android.gms.location.*
 import java.util.*

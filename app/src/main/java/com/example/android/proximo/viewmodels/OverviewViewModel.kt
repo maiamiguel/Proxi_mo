@@ -1,4 +1,4 @@
-package com.example.android.proximo.overview
+package com.example.android.proximo.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.android.proximo.R
 import com.example.android.proximo.models.TypesOfServices
 import com.example.android.proximo.network.MarsApiFilter
-import com.example.android.proximo.network.MarsProperty
+import com.example.android.proximo.models.MarsProperty
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 /**

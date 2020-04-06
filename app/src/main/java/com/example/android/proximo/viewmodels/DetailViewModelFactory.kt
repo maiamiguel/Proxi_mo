@@ -1,4 +1,4 @@
-package com.example.android.proximo.detail
+package com.example.android.proximo.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

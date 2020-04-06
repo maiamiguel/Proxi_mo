@@ -1,8 +1,8 @@
-package com.example.android.proximo.network
+package com.example.android.proximo.models
 
 import android.os.Parcelable
 import androidx.lifecycle.LiveData
-import com.example.android.proximo.overview.MarsApiStatus
+import com.example.android.proximo.viewmodels.MarsApiStatus
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 

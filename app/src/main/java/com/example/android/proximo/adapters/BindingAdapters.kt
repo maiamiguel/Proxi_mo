@@ -1,4 +1,4 @@
-package com.example.android.proximo
+package com.example.android.proximo.adapters
 
 import android.view.View
 import android.widget.ImageView
@@ -7,11 +7,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.android.proximo.detail.ServiceItemAdapter
+import com.example.android.proximo.R
 import com.example.android.proximo.models.Service
 import com.example.android.proximo.models.TypesOfServices
-import com.example.android.proximo.overview.MarsApiStatus
-import com.example.android.proximo.overview.PhotoGridAdapter
+import com.example.android.proximo.viewmodels.MarsApiStatus
 
 /**
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
@@ -25,7 +24,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<TypesOfServices>?) {
 @BindingAdapter("listDataServices")
 fun bindRecyclerViewServices(recyclerView: RecyclerView, data: List<Service>?) {
     val adapter = recyclerView.adapter as ServiceItemAdapter
-    adapter.submitList(data)
+    adapter.setServicesList(data as ArrayList<Service>)
 }
 
 @BindingAdapter("android:src")

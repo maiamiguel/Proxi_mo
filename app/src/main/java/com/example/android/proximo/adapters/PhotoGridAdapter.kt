@@ -1,4 +1,4 @@
-package com.example.android.proximo.overview
+package com.example.android.proximo.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.example.android.proximo.models.TypesOfServices
  * data, including computing diffs between lists.
  * @param onClick a lambda that takes the
  */
-class PhotoGridAdapter( val onClickListener: OnClickListener ) : ListAdapter<TypesOfServices, PhotoGridAdapter.ServiceViewHolder>(DiffCallback) {
+class PhotoGridAdapter( val onClickListener: OnClickListener) : ListAdapter<TypesOfServices, PhotoGridAdapter.ServiceViewHolder>(DiffCallback) {
     /**
      * The ServiceViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [TypesOfServices] information.

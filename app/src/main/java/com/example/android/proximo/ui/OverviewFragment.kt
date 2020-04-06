@@ -1,4 +1,4 @@
-package com.example.android.proximo.overview
+package com.example.android.proximo.ui
 
 import android.os.Bundle
 import android.view.*
@@ -9,6 +9,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.proximo.R
 import com.example.android.proximo.databinding.FragmentOverviewBinding
 import com.example.android.proximo.network.MarsApiFilter
+import com.example.android.proximo.viewmodels.OverviewViewModel
+import com.example.android.proximo.adapters.PhotoGridAdapter
 
 /**
  * This fragment shows the the status of the Mars real-estate web services transaction.
