@@ -1,13 +1,12 @@
 package com.example.android.marsrealestate.overview
 
-import android.R
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.marsrealestate.R
 import com.example.android.marsrealestate.models.Service
 import com.example.android.marsrealestate.network.MarsApiFilter
 import com.example.android.marsrealestate.network.MarsProperty
-
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 /**
@@ -47,11 +46,11 @@ class OverviewViewModel : ViewModel() {
 
     private val serviceTitles = arrayOf("Supermercados", "Farmácias", "Correios", "Take-Away")
     private val images = arrayOf(
-            R.drawable.ic_dialog_alert,
-            R.drawable.ic_dialog_map,
-            R.drawable.ic_menu_agenda,
-            R.drawable.ic_input_delete,
-            R.drawable.ic_secure
+            R.drawable.ic_broken_image,
+            R.drawable.ic_launcher_background,
+            R.drawable.common_google_signin_btn_icon_light_focused,
+            R.drawable.common_google_signin_btn_icon_dark,
+            R.drawable.common_google_signin_btn_icon_disabled
     )
 
     /**

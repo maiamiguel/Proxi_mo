@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.marsrealestate.models.Service
-import com.example.android.marsrealestate.network.MarsProperty
 
 /**
  * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.

@@ -4,11 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.android.marsrealestate.R
 import com.example.android.marsrealestate.models.Service
-import com.example.android.marsrealestate.network.MarsProperty
 
 /**
  *  The [ViewModel] associated with the [DetailFragment], containing information about the selected
