@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.proximo.R
-import com.example.android.proximo.models.Service
+import com.example.android.proximo.models.TypesOfServices
 import com.example.android.proximo.network.MarsApiFilter
 import com.example.android.proximo.network.MarsProperty
 
@@ -23,17 +23,17 @@ class OverviewViewModel : ViewModel() {
 
     // Internally, we use a MutableLiveData, because we will be updating the List of MarsProperty
     // with new values
-    private val _properties = MutableLiveData<List<Service>>()
+    private val _properties = MutableLiveData<List<TypesOfServices>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val properties: LiveData<List<Service>>
+    val properties: LiveData<List<TypesOfServices>>
         get() = _properties
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedProperty = MutableLiveData<Service>()
+    private val _navigateToSelectedProperty = MutableLiveData<TypesOfServices>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<Service>
+    val navigateToSelectedProperty: LiveData<TypesOfServices>
         get() = _navigateToSelectedProperty
 
 //    // Create a Coroutine scope using a job to be able to cancel when needed
@@ -42,7 +42,7 @@ class OverviewViewModel : ViewModel() {
 //    // the Coroutine runs using the Main (UI) dispatcher
 //    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    private val servicesList = ArrayList<Service>()
+    private val servicesList = ArrayList<TypesOfServices>()
 
     private val serviceTitles = arrayOf("Supermercados", "Farmácias", "Correios", "Take-Away")
     private val images = arrayOf(
@@ -61,7 +61,7 @@ class OverviewViewModel : ViewModel() {
         _status.value = MarsApiStatus.DONE
 
         for (i in serviceTitles.indices) {
-            servicesList.add((Service(serviceTitles[i] , images[i])))
+            servicesList.add((TypesOfServices(serviceTitles[i] , images[i])))
         }
 
         _properties.value = servicesList
@@ -103,8 +103,8 @@ class OverviewViewModel : ViewModel() {
      * When the property is clicked, set the [_navigateToSelectedProperty] [MutableLiveData]
      * @param marsProperty The [MarsProperty] that was clicked on.
      */
-    fun displayPropertyDetails(selectedService: Service) {
-        _navigateToSelectedProperty.value = selectedService
+    fun displayPropertyDetails(selectedTypesOfServices: TypesOfServices) {
+        _navigateToSelectedProperty.value = selectedTypesOfServices
     }
 
     /**
