@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.proximo.databinding.GridViewItemBinding
+import com.example.android.proximo.databinding.TypeServiceItemBinding
 import com.example.android.proximo.models.TypesOfServices
 
 /**
@@ -18,7 +18,7 @@ class PhotoGridAdapter( val onClickListener: OnClickListener) : ListAdapter<Type
      * The ServiceViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [TypesOfServices] information.
      */
-    class ServiceViewHolder(private var binding: GridViewItemBinding):
+    class ServiceViewHolder(private var binding: TypeServiceItemBinding):
             RecyclerView.ViewHolder(binding.root) {
         fun bind(selectedTypesOfServices: TypesOfServices) {
             binding.property = selectedTypesOfServices
@@ -46,7 +46,7 @@ class PhotoGridAdapter( val onClickListener: OnClickListener) : ListAdapter<Type
      * Create new [RecyclerView] item views (invoked by the layout manager)
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
-        return ServiceViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return ServiceViewHolder(TypeServiceItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**

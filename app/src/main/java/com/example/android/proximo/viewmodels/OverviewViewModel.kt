@@ -44,12 +44,14 @@ class OverviewViewModel : ViewModel() {
 
     private val servicesList = ArrayList<TypesOfServices>()
 
-    private val serviceTitles = arrayOf("Supermercados", "Farmácias", "Correios", "Take-Away")
+    private val serviceTitles = arrayOf("Supermercados", "Farmácias", "Correios", "Take-Away", "Bombas de combustível", "Telecomunicações", "Serviços Administrativos")
     private val images = arrayOf(
             R.drawable.ic_broken_image,
             R.drawable.ic_launcher_background,
             R.drawable.common_google_signin_btn_icon_light_focused,
             R.drawable.common_google_signin_btn_icon_dark,
+            R.drawable.common_google_signin_btn_icon_disabled,
+            R.drawable.common_google_signin_btn_icon_disabled,
             R.drawable.common_google_signin_btn_icon_disabled
     )
 

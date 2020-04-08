@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="service"
-            type="com.example.android.proximo.models.Service" />
+            name="property"
+            type="com.example.android.proximo.models.TypesOfServices" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
                 android:id="@+id/nameOfTypeOfService"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@{service.name}"
+                android:text="@{property.name}"
                 android:gravity="center_vertical|center_horizontal"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>

@@ -2,17 +2,19 @@ package com.example.android.proximo.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.android.proximo.R
 import com.example.android.proximo.databinding.FragmentDetailBinding
 import com.example.android.proximo.viewmodels.DetailViewModel
 import com.example.android.proximo.viewmodels.DetailViewModelFactory
 import com.example.android.proximo.adapters.ServiceItemAdapter
 import com.example.android.proximo.models.TypesOfServices
+import com.example.android.proximo.network.MarsApiFilter
+import com.example.android.proximo.viewmodels.OverviewViewModel
 
 /**
  * This [Fragment] shows the detailed information about a selected piece of Mars real estate.
@@ -55,7 +57,29 @@ class DetailFragment : Fragment() {
             }
         })
 
-        setHasOptionsMenu(true)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices.name
+
+        //setHasOptionsMenu(true)
         return binding.root
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.overflow_menu, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//
+//    /**
+//     * Updates the filter in the [OverviewViewModel] when the menu items are selected from the
+//     * overflow menu.
+//     */
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+////        viewModel.updateFilter(
+////                when (item.itemId) {
+////                    R.id.show_rent_menu -> MarsApiFilter.SHOW_RENT
+////                    R.id.show_buy_menu -> MarsApiFilter.SHOW_BUY
+////                    else -> MarsApiFilter.SHOW_ALL
+////                }
+////        )
+//        return true
+//    }
 }

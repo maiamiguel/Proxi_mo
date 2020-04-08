@@ -38,10 +38,10 @@ class DetailViewModel(selectedTypesOfServices: TypesOfServices, app: Application
     init {
         _selectedService.value = selectedTypesOfServices
 
-        servicesList.add(Service("TESTE"))
-        servicesList.add(Service("TESTE"))
-        servicesList.add(Service("TESTE"))
-        servicesList.add(Service("TESTE"))
+        servicesList.add(Service("TESTE","1"))
+        servicesList.add(Service("TESTE","2"))
+        servicesList.add(Service("TESTE","3"))
+        servicesList.add(Service("TESTE","4"))
 
         _services.value = servicesList
     }

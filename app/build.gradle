@@ -16,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -33,6 +34,9 @@ dependencies {
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
+
+    //ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
@@ -70,4 +74,15 @@ dependencies {
 
     //Location
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+
+    //ViewPager
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'androidx.fragment:fragment-ktx:1.2.3'
+
+    // Dots
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 }
