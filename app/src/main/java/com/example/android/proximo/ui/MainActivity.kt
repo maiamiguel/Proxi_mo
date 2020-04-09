@@ -4,12 +4,9 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
-import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
@@ -17,17 +14,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
+import com.birjuvachhani.locus.Locus
 import com.example.android.proximo.R
 import com.example.android.proximo.databinding.ActivityMainBinding
-import com.google.android.gms.location.*
+import java.io.IOException
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     private val PERMISSION_ID = 42
-    lateinit var mFusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         getLastLocation()
     }
 
@@ -48,23 +43,23 @@ class MainActivity : AppCompatActivity() {
     private fun getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
+                Locus.startLocationUpdates(this) { result ->
+                    result.location?.let {
+                        Log.d("debug", result.location.toString())
 
-                mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
-                    val location: Location? = task.result
-                    if (location == null) {
-                        requestNewLocationData()
-                    } else {
-                        Log.d("debug", "getLastLocation $location")
+                        try {
+                            val geocoder = Geocoder(this, Locale.getDefault())
+                            val addresses = geocoder.getFromLocation(result.location!!.latitude, result.location!!.longitude, 1)
+                            if (addresses.size > 0) {
+                                val address = addresses[0]
 
-                        val geocoder = Geocoder(this, Locale.getDefault())
-                        val addresses: List<Address> = geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                        val address = addresses[0].subLocality
-                        val cityName = addresses[0].locality
-                        val stateName = addresses[0].adminArea
-
-
-                        Log.d("debug", "HERE $addresses")
+                                Log.d("debug", "MORADA - $addresses")
+                            }
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
                     }
+                    result.error?.let { /* Received error! */ }
                 }
             } else {
                 Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
@@ -76,25 +71,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun requestNewLocationData() {
-        val mLocationRequest = LocationRequest()
-        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        mLocationRequest.interval = 0
-        mLocationRequest.fastestInterval = 0
-        mLocationRequest.numUpdates = 1
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient.requestLocationUpdates(
-                mLocationRequest, mLocationCallback,
-                Looper.myLooper()
-        )
-    }
-
-    private val mLocationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            val mLastLocation: Location = locationResult.lastLocation
-            Log.d("debug", "mLastLocation $mLastLocation")
-        }
+    override fun onStop() {
+        Locus.stopLocationUpdates()
+        super.onStop()
     }
 
     private fun isLocationEnabled(): Boolean {
