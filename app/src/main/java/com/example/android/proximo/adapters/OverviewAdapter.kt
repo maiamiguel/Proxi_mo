@@ -13,14 +13,14 @@ import com.example.android.proximo.models.TypesOfServices
  * data, including computing diffs between lists.
  * @param onClick a lambda that takes the
  */
-class PhotoGridAdapter( val onClickListener: OnClickListener) : ListAdapter<TypesOfServices, PhotoGridAdapter.ServiceViewHolder>(DiffCallback) {
+class OverviewAdapter(val onClickListener: OnClickListener) : ListAdapter<String, OverviewAdapter.ServiceViewHolder>(DiffCallback) {
     /**
      * The ServiceViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [TypesOfServices] information.
+     * GridViewItem, which nicely gives it access to the full [String] information.
      */
     class ServiceViewHolder(private var binding: TypeServiceItemBinding):
             RecyclerView.ViewHolder(binding.root) {
-        fun bind(selectedTypesOfServices: TypesOfServices) {
+        fun bind(selectedTypesOfServices: String) {
             binding.property = selectedTypesOfServices
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -32,13 +32,13 @@ class PhotoGridAdapter( val onClickListener: OnClickListener) : ListAdapter<Type
      * Allows the RecyclerView to determine which items have changed when the [List] of [MarsProperty]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<TypesOfServices>() {
-        override fun areItemsTheSame(oldItem: TypesOfServices, newItem: TypesOfServices): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: TypesOfServices, newItem: TypesOfServices): Boolean {
-            return oldItem.name == newItem.name
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
         }
     }
 
@@ -65,7 +65,7 @@ class PhotoGridAdapter( val onClickListener: OnClickListener) : ListAdapter<Type
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [MarsProperty]
      */
-    class OnClickListener(val clickListener: (selectedTypesOfServices : TypesOfServices) -> Unit) {
-        fun onClick(selectedTypesOfServices : TypesOfServices) = clickListener(selectedTypesOfServices)
+    class OnClickListener(val clickListener: (selectedTypesOfServices : String) -> Unit) {
+        fun onClick(selectedTypesOfServices : String) = clickListener(selectedTypesOfServices)
     }
 }

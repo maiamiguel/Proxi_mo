@@ -14,7 +14,6 @@ import com.example.android.proximo.adapters.WelcomeCollectionAdapter
 import com.example.android.proximo.databinding.ViewPagerFragmentBinding
 import com.example.android.proximo.viewmodels.WelcomeViewModel
 
-
 class ViewPagerFragment : Fragment() {
     private lateinit var demoCollectionPagerAdapter: WelcomeCollectionAdapter
     private lateinit var viewPager: ViewPager

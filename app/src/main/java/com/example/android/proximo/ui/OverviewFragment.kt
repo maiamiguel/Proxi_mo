@@ -8,9 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.android.proximo.R
 import com.example.android.proximo.databinding.FragmentOverviewBinding
-import com.example.android.proximo.network.MarsApiFilter
 import com.example.android.proximo.viewmodels.OverviewViewModel
-import com.example.android.proximo.adapters.PhotoGridAdapter
+import com.example.android.proximo.adapters.OverviewAdapter
 
 /**
  * This fragment shows the the status of the Mars real-estate web services transaction.
@@ -40,14 +39,14 @@ class OverviewFragment : Fragment() {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
+        binding.photosGrid.adapter = OverviewAdapter(OverviewAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
         // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
         // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready
         // for another navigation event.
-        viewModel.navigateToSelectedProperty.observe(this, Observer {
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if ( null != it ) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(OverviewFragmentDirections.actionShowDetail(it))
@@ -73,13 +72,13 @@ class OverviewFragment : Fragment() {
      * overflow menu.
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewModel.updateFilter(
-                when (item.itemId) {
-                    R.id.show_rent_menu -> MarsApiFilter.SHOW_RENT
-                    R.id.show_buy_menu -> MarsApiFilter.SHOW_BUY
-                    else -> MarsApiFilter.SHOW_ALL
-                }
-        )
+//        viewModel.updateFilter(
+//                when (item.itemId) {
+//                    R.id.show_rent_menu -> MarsApiFilter.SHOW_RENT
+//                    R.id.show_buy_menu -> MarsApiFilter.SHOW_BUY
+//                    else -> MarsApiFilter.SHOW_ALL
+//                }
+//        )
         return true
     }
 }

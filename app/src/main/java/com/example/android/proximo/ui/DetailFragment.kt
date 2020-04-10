@@ -13,7 +13,6 @@ import com.example.android.proximo.viewmodels.DetailViewModel
 import com.example.android.proximo.viewmodels.DetailViewModelFactory
 import com.example.android.proximo.adapters.ServiceItemAdapter
 import com.example.android.proximo.models.TypesOfServices
-import com.example.android.proximo.network.MarsApiFilter
 import com.example.android.proximo.viewmodels.OverviewViewModel
 
 /**
@@ -29,7 +28,7 @@ class DetailFragment : Fragment() {
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val selectedTypesOfServices : TypesOfServices = DetailFragmentArgs.fromBundle(arguments!!).selectedTypesOfServices
+        val selectedTypesOfServices : String = DetailFragmentArgs.fromBundle(requireArguments()).selectedTypesOfServices
         val viewModelFactory = DetailViewModelFactory(selectedTypesOfServices, application)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
@@ -47,7 +46,7 @@ class DetailFragment : Fragment() {
         // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
         // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready
         // for another navigation event.
-        viewModel.navigateToSelectedProperty.observe(this, Observer {
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if ( null != it ) {
                 Log.d("debug", "CLICK")
                 // Must find the NavController from the Fragment
@@ -57,7 +56,7 @@ class DetailFragment : Fragment() {
             }
         })
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices.name
+        (activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices
 
         //setHasOptionsMenu(true)
         return binding.root

@@ -9,7 +9,7 @@ import com.example.android.proximo.models.TypesOfServices
  * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.
  */
 class DetailViewModelFactory(
-        private val selectedTypesOfServices: TypesOfServices,
+        private val selectedTypesOfServices: String,
         private val application: Application) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

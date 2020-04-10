@@ -31,7 +31,6 @@
         tools:layout="@layout/fragment_detail"  >
         <argument
             android:name="selectedTypesOfServices"
-            app:argType="com.example.android.proximo.models.TypesOfServices"
             />
     </fragment>
 

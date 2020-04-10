@@ -10,6 +10,11 @@
     <string name="display_price">$%,.0f</string>
     <string name="services">Serviços</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_text">Bem-vindo(a) ao prox_imo!</string>
+    <string name="description1">Lorem Ipsum dolor sit amet, consectetur adipiscing elit. In eu vulputate nibh.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor placerat, commodo arcu a, malesuada ante.</string>
+    <string name="list_services">Listagem de serviços</string>
+    <string name="location">Localização</string>
+    <string name="start">Começar</string>
 </resources>

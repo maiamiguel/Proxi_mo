@@ -5,6 +5,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class TypesOfServices(
-    val name: String,
-    val img: Int
+    val name: String
 ) : Parcelable
