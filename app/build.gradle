@@ -89,4 +89,5 @@ dependencies {
     //Location
     implementation 'com.github.BirjuVachhani:locus-android:3.0.1'
 
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }

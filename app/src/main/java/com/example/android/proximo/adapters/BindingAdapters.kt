@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.android.proximo.R
 import com.example.android.proximo.models.Service
-import com.example.android.proximo.models.TypesOfServices
 import com.example.android.proximo.viewmodels.MarsApiStatus
 
 /**
@@ -17,7 +16,7 @@ import com.example.android.proximo.viewmodels.MarsApiStatus
  */
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<String>?) {
-    val adapter = recyclerView.adapter as OverviewAdapter
+    val adapter = recyclerView.adapter as TypeServicesAdapter
     adapter.submitList(data)
 }
 

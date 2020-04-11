@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.android.proximo.ui.WelcomeFragment
 
-class WelcomeCollectionAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+class WelcomeCollectionAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT ) {
 
     override fun getCount(): Int = 3
 

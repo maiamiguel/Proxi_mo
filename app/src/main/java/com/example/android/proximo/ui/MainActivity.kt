@@ -21,7 +21,6 @@ import com.example.android.proximo.databinding.ActivityMainBinding
 import java.io.IOException
 import java.util.*
 
-
 class MainActivity : AppCompatActivity() {
     private val PERMISSION_ID = 42
 

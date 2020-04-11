@@ -26,7 +26,7 @@ class ViewPagerFragment : Fragment() {
     }
 
     /**
-     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
+     * Inflates the layout with Data Binding, sets its lifecycle owner to the TypeServicesFragment
      * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

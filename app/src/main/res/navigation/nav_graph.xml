@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.android.proximo.ui.ViewPagerFragment"
-        android:label="ViewPagerFragment" >
+        android:label="ViewPagerFragment">
         <action
             android:id="@+id/action_viewPagerFragment_to_overviewFragment"
             app:destination="@id/overviewFragment" />
@@ -16,9 +16,10 @@
 
     <fragment
         android:id="@+id/overviewFragment"
-        android:name="com.example.android.proximo.ui.OverviewFragment"
+        android:name="com.example.android.proximo.ui.TypeServicesFragment"
         android:label="@string/services"
-        tools:layout="@layout/fragment_overview" >
+        tools:layout="@layout/fragment_List_Services_Types">
+
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
@@ -26,12 +27,26 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.android.proximo.ui.DetailFragment"
+        android:name="com.example.android.proximo.ui.ServicesFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail"  >
-        <argument
-            android:name="selectedTypesOfServices"
-            />
+        tools:layout="@layout/fragment_list_services">
+
+        <argument android:name="selectedTypesOfServices" />
+
+        <action
+            android:id="@+id/action_specificService"
+            app:destination="@id/specificService" />
     </fragment>
 
+    <fragment
+        android:id="@+id/specificService"
+        android:name="com.example.android.proximo.ui.SpecificServiceFragment"
+        android:label="specific_fragment"
+        tools:layout="@layout/specific_fragment">
+
+        <argument
+            app:argType="com.example.android.proximo.models.Service"
+            android:name="specificService" />
+
+    </fragment>
 </navigation>

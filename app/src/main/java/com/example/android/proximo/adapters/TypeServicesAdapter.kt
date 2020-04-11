@@ -6,14 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.proximo.databinding.TypeServiceItemBinding
-import com.example.android.proximo.models.TypesOfServices
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  * @param onClick a lambda that takes the
  */
-class OverviewAdapter(val onClickListener: OnClickListener) : ListAdapter<String, OverviewAdapter.ServiceViewHolder>(DiffCallback) {
+class TypeServicesAdapter(val onClickListener: OnClickListener) : ListAdapter<String, TypeServicesAdapter.ServiceViewHolder>(DiffCallback) {
     /**
      * The ServiceViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [String] information.

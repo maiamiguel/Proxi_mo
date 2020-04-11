@@ -12,7 +12,7 @@ import com.example.android.proximo.models.TypesOfServices
  *  The [ViewModel] associated with the [DetailFragment], containing information about the selected
  *  [TypesOfServices].
  */
-class DetailViewModel(selectedTypesOfServices: String, app: Application) : AndroidViewModel(app) {
+class ServicesViewModel(selectedTypesOfServices: String, app: Application) : AndroidViewModel(app) {
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedProperty = MutableLiveData<Service>()
 
