@@ -51,7 +51,7 @@ class ServicesFragment : Fragment() {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(ServicesFragmentDirections.actionSpecificService(it))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
-                //binding.viewModel.displayServiceDetailsComplete()
+                viewModel.displayServiceDetailsComplete()
             }
         })
 

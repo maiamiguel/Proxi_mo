@@ -4,28 +4,20 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.android.proximo.models.Service
+import com.example.android.proximo.models.Company
 
-class SpecificViewModel(selectedTypesOfServices: Service, app: Application) : AndroidViewModel(app) {
+class SpecificViewModel(selectedCompanyArg: Company, app: Application) : AndroidViewModel(app) {
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedProperty = MutableLiveData<Service>()
+    private val _navigateToSelectedProperty = MutableLiveData<Company>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<Service>
+    val navigateToSelectedProperty: LiveData<Company>
         get() = _navigateToSelectedProperty
 
-    private val _selectedService = MutableLiveData<String>()
-    // The external LiveData for the SelectedProperty
-    val selectedTypesOfServices: LiveData<String>
-        get() = _selectedService
+    var selectedCompany : Company = selectedCompanyArg
 
-
-    init {
-
-    }
-
-    fun displayServiceDetails(selectedService: Service) {
-        _navigateToSelectedProperty.value = selectedService
+    fun displayServiceDetails(selectedCompany: Company) {
+        _navigateToSelectedProperty.value = selectedCompany
     }
 
     fun displayServiceDetailsComplete() {

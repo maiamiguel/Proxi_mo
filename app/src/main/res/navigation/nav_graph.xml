@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.example.android.proximo.ui.TypeServicesFragment"
-        android:label="@string/services"
+        android:label="@string/companies"
         tools:layout="@layout/fragment_List_Services_Types">
 
         <action
@@ -35,18 +35,18 @@
 
         <action
             android:id="@+id/action_specificService"
-            app:destination="@id/specificService" />
+            app:destination="@id/specificCompany" />
     </fragment>
 
     <fragment
-        android:id="@+id/specificService"
+        android:id="@+id/specificCompany"
         android:name="com.example.android.proximo.ui.SpecificServiceFragment"
         android:label="specific_fragment"
         tools:layout="@layout/specific_fragment">
 
         <argument
-            app:argType="com.example.android.proximo.models.Service"
-            android:name="specificService" />
+            app:argType="com.example.android.proximo.models.Company"
+            android:name="specificCompany" />
 
     </fragment>
 </navigation>

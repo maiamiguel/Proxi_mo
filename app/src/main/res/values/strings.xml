@@ -8,7 +8,7 @@
     <string name="display_type">For %s</string>
     <string name="display_price_monthly_rental">$%,.0f/month</string>
     <string name="display_price">$%,.0f</string>
-    <string name="services">Serviços</string>
+    <string name="companies">Serviços</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_text">Bem-vindo(a) ao prox_imo!</string>

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.android.proximo.R
-import com.example.android.proximo.models.Service
+import com.example.android.proximo.models.Company
 import com.example.android.proximo.viewmodels.MarsApiStatus
 
 /**
@@ -21,9 +21,9 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<String>?) {
 }
 
 @BindingAdapter("listDataServices")
-fun bindRecyclerViewServices(recyclerView: RecyclerView, data: List<Service>?) {
+fun bindRecyclerViewServices(recyclerView: RecyclerView, data: List<Company>?) {
     val adapter = recyclerView.adapter as ServiceItemAdapter
-    adapter.setServicesList(data as ArrayList<Service>)
+    adapter.setServicesList(data as ArrayList<Company>)
 }
 
 @BindingAdapter("android:src")

@@ -6,10 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.proximo.R
 import com.example.android.proximo.databinding.ServiceOverviewItemBinding
-import com.example.android.proximo.models.Service
+import com.example.android.proximo.models.Company
 
 class ServiceItemAdapter(private val onClickListener: OnClickListener) : RecyclerView.Adapter<ServiceItemAdapter.ServiceViewHolder?>() {
-    private var services: List<Service> = ArrayList()
+    private var companies: List<Company> = ArrayList()
 
     override fun onCreateViewHolder(
             viewGroup: ViewGroup,
@@ -26,26 +26,26 @@ class ServiceItemAdapter(private val onClickListener: OnClickListener) : Recycle
             serviceViewHolder: ServiceViewHolder,
             i: Int
     ) {
-        val currentService: Service = services.get(i)
+        val currentCompany: Company = companies.get(i)
 
         serviceViewHolder.itemView.setOnClickListener {
-            onClickListener.onClick(currentService)
+            onClickListener.onClick(currentCompany)
         }
 
-        serviceViewHolder.serviceListItemBinding.service = currentService
+        serviceViewHolder.serviceListItemBinding.service = currentCompany
     }
 
     override fun getItemCount(): Int {
-        return if (services.isEmpty()) 0 else services.size
+        return if (companies.isEmpty()) 0 else companies.size
     }
 
-    fun setServicesList(services: List<Service>) {
-        this.services = services
+    fun setServicesList(companies: List<Company>) {
+        this.companies = companies
         notifyDataSetChanged()
     }
 
-    class OnClickListener(val clickListener: (selectedTypesOfServices : Service) -> Unit) {
-        fun onClick(selectedTypesOfServices : Service) = clickListener(selectedTypesOfServices)
+    class OnClickListener(val clickListener: (selectedTypesOfServices : Company) -> Unit) {
+        fun onClick(selectedTypesOfServices : Company) = clickListener(selectedTypesOfServices)
     }
 
     inner class ServiceViewHolder(serviceListItemBinding: ServiceOverviewItemBinding) : RecyclerView.ViewHolder(serviceListItemBinding.root) {

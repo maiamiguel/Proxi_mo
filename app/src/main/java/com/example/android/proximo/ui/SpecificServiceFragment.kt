@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.android.proximo.databinding.SpecificFragmentBinding
-import com.example.android.proximo.models.Service
+import com.example.android.proximo.models.Company
 import com.example.android.proximo.viewmodels.SpecificViewModel
 import com.example.android.proximo.viewmodels.SpecificViewModelFactory
 
@@ -19,8 +20,8 @@ class SpecificServiceFragment : Fragment() {
         val binding = SpecificFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val specificService: Service = SpecificServiceFragmentArgs.fromBundle(requireArguments()).specificService
-        val viewModelFactory = SpecificViewModelFactory(specificService, application)
+        val specificCompany: Company = SpecificServiceFragmentArgs.fromBundle(requireArguments()).specificCompany
+        val viewModelFactory = SpecificViewModelFactory(specificCompany, application)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SpecificViewModel::class.java)
 
@@ -47,7 +48,7 @@ class SpecificServiceFragment : Fragment() {
 //            }
 //        })
 //
-//        (activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices
+        (activity as? AppCompatActivity)?.supportActionBar?.title = specificCompany.name
 
         return binding.root
     }
