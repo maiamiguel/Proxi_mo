@@ -1,5 +1,6 @@
 package com.example.android.proximo.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +25,8 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+
             val titleTextView = view.findViewById<TextView>(R.id.titleText)
             val descriptionTextView = view.findViewById<TextView>(R.id.descriptionText)
             val img = view.findViewById<ImageView>(R.id.img)
@@ -51,6 +54,10 @@ class WelcomeFragment : Fragment() {
                 descriptionTextView.text = getString(R.string.description1)
                 btn.visibility = (View.VISIBLE);
                 btn.setOnClickListener {
+                    with (sharedPref.edit()) {
+                        putBoolean(getString(R.string.introTutorial), true)
+                        commit()
+                    }
                     findNavController().navigate(R.id.action_viewPagerFragment_to_overviewFragment)
                 }
             }

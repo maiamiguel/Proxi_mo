@@ -18,7 +18,7 @@
         android:id="@+id/overviewFragment"
         android:name="com.example.android.proximo.ui.TypeServicesFragment"
         android:label="@string/companies"
-        tools:layout="@layout/fragment_List_Services_Types">
+        tools:layout="@layout/fragment_list_services_types">
 
         <action
             android:id="@+id/action_showDetail"

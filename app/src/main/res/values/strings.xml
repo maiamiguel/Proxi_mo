@@ -17,4 +17,5 @@
     <string name="list_services">Listagem de serviços</string>
     <string name="location">Localização</string>
     <string name="start">Começar</string>
+    <string name="introTutorial">tutorial</string>
 </resources>
