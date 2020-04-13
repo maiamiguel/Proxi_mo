@@ -13,9 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.android.proximo.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class WelcomeFragment : Fragment() {
     private val ARG_OBJECT = "object"
 
