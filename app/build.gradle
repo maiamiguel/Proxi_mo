@@ -11,7 +11,7 @@ android {
     }
     defaultConfig {
         applicationId "com.example.android.proximo"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,10 @@ android {
     }
     androidExtensions {
         experimental = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -81,7 +85,7 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'androidx.fragment:fragment-ktx:1.2.3'
+    implementation 'androidx.fragment:fragment-ktx:1.2.4'
 
     // Dots
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
@@ -90,4 +94,8 @@ dependencies {
     implementation 'com.github.BirjuVachhani:locus-android:3.0.1'
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //TOMTOM
+    implementation("com.tomtom.online:sdk-search:2.4449")
+
 }

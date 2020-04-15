@@ -55,7 +55,7 @@ class WelcomeFragment : Fragment() {
                         putBoolean(getString(R.string.introTutorial), true)
                         commit()
                     }
-                    findNavController().navigate(R.id.action_viewPagerFragment_to_overviewFragment)
+                    findNavController().navigate(R.id.action_viewPagerFragment_to_locationFragment)
                 }
             }
 

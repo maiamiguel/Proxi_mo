@@ -21,7 +21,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<String>?) {
 }
 
 @BindingAdapter("listDataServices")
-fun bindRecyclerViewServices(recyclerView: RecyclerView, data: List<Company>?) {
+fun bindRecyclerViewServices(recyclerView: RecyclerView, data: List<Company>) {
     val adapter = recyclerView.adapter as ServiceItemAdapter
     adapter.setServicesList(data as ArrayList<Company>)
 }

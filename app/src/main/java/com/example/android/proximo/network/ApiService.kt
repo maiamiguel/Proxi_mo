@@ -1,7 +1,9 @@
 package com.example.android.proximo.network
 
+import com.example.android.proximo.models.CompaniesByLocationResponse
+import com.example.android.proximo.models.ListDistricts
 import com.example.android.proximo.models.ListTypeofServices
-import com.example.android.proximo.models.TypesOfServices
+import com.example.android.proximo.models.ResponseCompany
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -9,6 +11,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL = "http://api.proxi-mo.pt/"
 
@@ -37,8 +40,21 @@ interface ApiService {
 
     @GET("categories")
     fun getServicesTypes():
-    // The Coroutine Call Adapter allows us to return a Deferred, a Job with a result
     Deferred<ListTypeofServices>
+
+    @GET("all_districts")
+    fun getDistricts():
+    Deferred<ListDistricts>
+
+    @GET("counties_by_distric")
+    fun counties_by_distric(
+            @Query("district") district: String?
+    ): Deferred<ResponseCompany>
+
+    @GET("companies_by_location")
+    fun companies_by_location(
+            @Query("county") county: String?
+    ): Deferred<CompaniesByLocationResponse>
 }
 
 /**

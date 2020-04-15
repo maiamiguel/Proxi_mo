@@ -1,12 +1,11 @@
 package com.example.android.proximo.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.android.proximo.models.Company
-import com.example.android.proximo.models.TypesOfServices
+import android.util.Log
+import androidx.lifecycle.*
+import com.example.android.proximo.models.*
+import com.example.android.proximo.network.Api
+import kotlinx.coroutines.launch
 
 /**
  *  The [ViewModel] associated with the [DetailFragment], containing information about the selected
@@ -32,18 +31,33 @@ class ServicesViewModel(selectedTypesOfServices: String, app: Application) : And
     val properties: LiveData<List<Company>>
         get() = _services
 
-    private val servicesList = ArrayList<Company>()
+    private val companiesList = ArrayList<Company>()
 
     // Initialize the _selectedService MutableLiveData
     init {
         _selectedService.value = selectedTypesOfServices
+        companies_by_location(selectedTypesOfServices, "Aveiro", "Estarreja")
+    }
 
-        servicesList.add(Company("TESTE","1", "teste"))
-        servicesList.add(Company("TESTE","2", "teste"))
-        servicesList.add(Company("TESTE","3", "teste"))
-        servicesList.add(Company("TESTE","4", "teste"))
+    private fun companies_by_location(typeOfService : String, district: String, county : String){
+        viewModelScope.launch {
+            // Get the Deferred object for our Retrofit request
+            val getPropertiesDeferred =  Api.retrofitService.companies_by_location(county)
+            try {
+                // this will run on a thread managed by Retrofit
+                val listResult = getPropertiesDeferred.await()
 
-        _services.value = servicesList
+                for (company in listResult.companies){
+                    Log.d("debug", "Aqui resultado : ${company.value}")
+                    companiesList.add(company.value)
+                }
+
+                _services.value = companiesList
+            } catch (e: Exception) {
+                Log.e("error", e.toString())
+//                _services.value = ArrayList()
+            }
+        }
     }
 
     fun displayServiceDetails(selectedCompany: Company) {

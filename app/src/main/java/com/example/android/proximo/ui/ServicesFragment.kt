@@ -42,12 +42,21 @@ class ServicesFragment : Fragment() {
 
         binding.rv.adapter = adapter
 
+        viewModel.properties.observe(
+                this.viewLifecycleOwner,
+                Observer { t ->
+                    t.let {
+                        // Sets new Data to RecyclerView
+                        Log.d("debug", "setServicesList changed")
+                        adapter.setServicesList(it)
+                    }
+                })
+
         // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
         // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready
         // for another navigation event.
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if ( null != it ) {
-                Log.d("debug", "CLICK")
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(ServicesFragmentDirections.actionSpecificService(it))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation

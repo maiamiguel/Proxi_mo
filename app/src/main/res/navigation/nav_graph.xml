@@ -3,14 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/viewPagerFragment">
+    app:startDestination="@id/locationFragment">
 
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.android.proximo.ui.ViewPagerFragment"
         android:label="ViewPagerFragment">
         <action
-            android:id="@+id/action_viewPagerFragment_to_overviewFragment"
+            android:id="@+id/action_viewPagerFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.android.proximo.ui.LocationFragment"
+        android:label="LocationFragment" >
+        <action
+            android:id="@+id/action_locationFragment_to_overviewFragment"
             app:destination="@id/overviewFragment" />
     </fragment>
 
@@ -19,7 +28,6 @@
         android:name="com.example.android.proximo.ui.TypeServicesFragment"
         android:label="@string/companies"
         tools:layout="@layout/fragment_list_services_types">
-
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
@@ -30,9 +38,7 @@
         android:name="com.example.android.proximo.ui.ServicesFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_list_services">
-
         <argument android:name="selectedTypesOfServices" />
-
         <action
             android:id="@+id/action_specificService"
             app:destination="@id/specificCompany" />
@@ -43,10 +49,8 @@
         android:name="com.example.android.proximo.ui.SpecificServiceFragment"
         android:label="specific_fragment"
         tools:layout="@layout/specific_fragment">
-
         <argument
             app:argType="com.example.android.proximo.models.Company"
             android:name="specificCompany" />
-
     </fragment>
 </navigation>

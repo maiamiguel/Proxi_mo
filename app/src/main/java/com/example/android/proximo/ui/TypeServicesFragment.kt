@@ -56,11 +56,6 @@ class TypeServicesFragment : Fragment() {
             }
         })
 
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-            // Handle the back button event
-            Log.d("debug", "BACK BUTTON")
-        }
-
         setHasOptionsMenu(true)
         return binding.root
     }
