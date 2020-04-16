@@ -11,7 +11,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.proximo.databinding.SpecificFragmentBinding
 import com.example.android.proximo.models.Company
 import com.example.android.proximo.viewmodels.SpecificViewModel
@@ -29,7 +29,7 @@ class SpecificServiceFragment : Fragment() {
         val specificCompany: Company = SpecificServiceFragmentArgs.fromBundle(requireArguments()).specificCompany
         val viewModelFactory = SpecificViewModelFactory(specificCompany, application)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SpecificViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(SpecificViewModel::class.java)
 
         binding.viewModel = viewModel
 

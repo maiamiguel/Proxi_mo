@@ -6,9 +6,8 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.android.proximo.R
 import com.example.android.proximo.viewmodels.ServicesViewModel
 import com.example.android.proximo.viewmodels.ServicesViewModelFactory
 import com.example.android.proximo.adapters.ServiceItemAdapter
@@ -30,7 +29,7 @@ class ServicesFragment : Fragment() {
         val selectedTypesOfServices : String = ServicesFragmentArgs.fromBundle(requireArguments()).selectedTypesOfServices
         val viewModelFactory = ServicesViewModelFactory(selectedTypesOfServices, application)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ServicesViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ServicesViewModel::class.java)
 
         binding.viewModel = viewModel
 

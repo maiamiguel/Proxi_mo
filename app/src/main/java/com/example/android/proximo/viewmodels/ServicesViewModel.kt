@@ -36,10 +36,10 @@ class ServicesViewModel(selectedTypesOfServices: String, app: Application) : And
     // Initialize the _selectedService MutableLiveData
     init {
         _selectedService.value = selectedTypesOfServices
-        companies_by_location(selectedTypesOfServices, "Aveiro", "Aveiro")
+        companies_by_location(selectedTypesOfServices, "Estarreja")
     }
 
-    private fun companies_by_location(typeOfService : String, district: String, county : String){
+    private fun companies_by_location(typeOfService : String, county : String){
         viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
             val getPropertiesDeferred =  Api.retrofitService.companies_by_location(county)

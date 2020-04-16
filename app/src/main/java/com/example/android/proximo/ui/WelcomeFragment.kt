@@ -12,22 +12,21 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.android.proximo.R
+import com.example.android.proximo.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : Fragment() {
     private val ARG_OBJECT = "object"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_welcome, container, false)
-    }
+        val binding = FragmentWelcomeBinding.inflate(inflater)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
-            val titleTextView = view.findViewById<TextView>(R.id.titleText)
-            val descriptionTextView = view.findViewById<TextView>(R.id.descriptionText)
-            val img = view.findViewById<ImageView>(R.id.img)
-            val btn = view.findViewById<Button>(R.id.btnStart)
+            val titleTextView = binding.titleText
+            val descriptionTextView = binding.descriptionText
+            val img = binding.img
+            val btn = binding.btnStart
 
             val pos = getInt(ARG_OBJECT)
 
@@ -51,9 +50,9 @@ class WelcomeFragment : Fragment() {
                 descriptionTextView.text = getString(R.string.description1)
                 btn.visibility = (View.VISIBLE);
                 btn.setOnClickListener {
-                    with (sharedPref.edit()) {
+                    with (sharedPref?.edit()) {
                         putBoolean(getString(R.string.introTutorial), true)
-                        commit()
+                        this?.commit()
                     }
                     findNavController().navigate(R.id.action_viewPagerFragment_to_locationFragment)
                 }
@@ -61,6 +60,12 @@ class WelcomeFragment : Fragment() {
 
             Log.d("debug", "Args ${getInt(ARG_OBJECT)}")
         }
+
+        return binding.root
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
     }
 
     // newInstance constructor for creating fragment with arguments

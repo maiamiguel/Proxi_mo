@@ -1,12 +1,10 @@
 package com.example.android.proximo.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.proximo.R
 import com.example.android.proximo.viewmodels.OverviewViewModel
@@ -22,7 +20,7 @@ class TypeServicesFragment : Fragment() {
      * Lazily initialize our [OverviewViewModel].
      */
     private val viewModel: OverviewViewModel by lazy {
-        ViewModelProviders.of(this).get(OverviewViewModel::class.java)
+        ViewModelProvider(this).get(OverviewViewModel::class.java)
     }
 
     /**

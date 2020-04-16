@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.birjuvachhani.locus.Locus
@@ -40,7 +41,7 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
      * Lazily initialize our [LocationViewModel].
      */
     private val viewModel: LocationViewModel by lazy {
-        ViewModelProviders.of(this).get(LocationViewModel::class.java)
+        ViewModelProvider(this).get(LocationViewModel::class.java)
     }
 
     /**
@@ -126,7 +127,7 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun reverseGeocoder(latitude: Double, longitude: Double) {
         try {
             val searchApi = context?.let { OnlineSearchApi.create(it) }
-            searchApi?.reverseGeocoding(ReverseGeocoderSearchQueryBuilder(40.8035515, -8.5693427).build())
+            searchApi?.reverseGeocoding(ReverseGeocoderSearchQueryBuilder(latitude, longitude).build())
                     ?.subscribeOn(Schedulers.io())
                     ?.observeOn(AndroidSchedulers.mainThread())
                     ?.subscribe(object : DisposableSingleObserver<ReverseGeocoderSearchResponse?>() {

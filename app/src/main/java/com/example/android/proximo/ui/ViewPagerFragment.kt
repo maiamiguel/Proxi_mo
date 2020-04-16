@@ -5,24 +5,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.example.android.proximo.adapters.WelcomeCollectionAdapter
+import com.example.android.proximo.adapters.WelcomeViewPagerAdapter
 import com.example.android.proximo.databinding.ViewPagerFragmentBinding
 import com.example.android.proximo.viewmodels.WelcomeViewModel
 
 class ViewPagerFragment : Fragment() {
-    private lateinit var demoCollectionPagerAdapter: WelcomeCollectionAdapter
+    private lateinit var demoViewPagerPagerAdapter: WelcomeViewPagerAdapter
     private lateinit var viewPager: ViewPager
 
     /**
      * Lazily initialize our [WelcomeViewModel].
      */
     private val viewModel: WelcomeViewModel by lazy {
-        ViewModelProviders.of(this).get(WelcomeViewModel::class.java)
+        ViewModelProvider(this).get(WelcomeViewModel::class.java)
     }
 
     /**
@@ -38,9 +37,9 @@ class ViewPagerFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        demoCollectionPagerAdapter = WelcomeCollectionAdapter(childFragmentManager)
+        demoViewPagerPagerAdapter = WelcomeViewPagerAdapter(childFragmentManager)
         viewPager = binding.viewPager
-        viewPager.adapter = demoCollectionPagerAdapter
+        viewPager.adapter = demoViewPagerPagerAdapter
         val dotsIndicator = binding.dotsIndicator
         dotsIndicator.setViewPager(viewPager)
 
@@ -68,5 +67,10 @@ class ViewPagerFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("debug", "Cavaco silva onDestroyView")
     }
 }

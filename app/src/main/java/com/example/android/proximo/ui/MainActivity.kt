@@ -19,18 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         // Configure the navigation
         val navHost = myNavHostFragment as NavHostFragment
-        val graph = navHost.navController.navInflater.inflate(R.navigation.nav_graph)
-
-        val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        val tutorialDone = sharedPref.getBoolean(getString(R.string.introTutorial), false)
-
-//        if (tutorialDone) {
-//            graph.startDestination = R.id.locationFragment
-//        } else {
-//            graph.startDestination = R.id.viewPagerFragment
-//        }
-
-        navHost.navController.graph = graph
         NavigationUI.setupActionBarWithNavController(this, navHost.navController)
     }
 
