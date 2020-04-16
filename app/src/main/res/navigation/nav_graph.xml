@@ -3,12 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/locationFragment">
+    app:startDestination="@id/initialFragment">
+
+    <fragment
+        android:id="@+id/initialFragment"
+        android:name="com.example.android.proximo.ui.InitialFragment"
+        android:label="@string/app_name" >
+        <action
+            android:id="@+id/action_initialFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.android.proximo.ui.ViewPagerFragment"
-        android:label="ViewPagerFragment">
+        android:label="@string/tutorial">
         <action
             android:id="@+id/action_viewPagerFragment_to_locationFragment"
             app:destination="@id/locationFragment" />
@@ -17,7 +26,7 @@
     <fragment
         android:id="@+id/locationFragment"
         android:name="com.example.android.proximo.ui.LocationFragment"
-        android:label="LocationFragment" >
+        android:label="@string/location" >
         <action
             android:id="@+id/action_locationFragment_to_overviewFragment"
             app:destination="@id/overviewFragment" />

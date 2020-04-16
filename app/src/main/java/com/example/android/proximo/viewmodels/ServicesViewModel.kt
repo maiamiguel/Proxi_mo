@@ -36,7 +36,7 @@ class ServicesViewModel(selectedTypesOfServices: String, app: Application) : And
     // Initialize the _selectedService MutableLiveData
     init {
         _selectedService.value = selectedTypesOfServices
-        companies_by_location(selectedTypesOfServices, "Aveiro", "Estarreja")
+        companies_by_location(selectedTypesOfServices, "Aveiro", "Aveiro")
     }
 
     private fun companies_by_location(typeOfService : String, district: String, county : String){
@@ -46,6 +46,8 @@ class ServicesViewModel(selectedTypesOfServices: String, app: Application) : And
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
+
+
 
                 for (company in listResult.companies){
                     Log.d("debug", "Aqui resultado : ${company.value}")

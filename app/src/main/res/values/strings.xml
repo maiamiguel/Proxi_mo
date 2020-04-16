@@ -19,4 +19,6 @@
     <string name="start">Começar</string>
     <string name="introTutorial">tutorial</string>
     <string name="confirm_location">Foi detectado que se encontra na seguinte localização. Por favor confirme ou altere os seus dados:</string>
+    <string name="introText">prox_imo</string>
+    <string name="tutorial">Tutorial</string>
 </resources>

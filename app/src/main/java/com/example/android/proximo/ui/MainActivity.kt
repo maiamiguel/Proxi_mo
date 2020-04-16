@@ -24,11 +24,11 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         val tutorialDone = sharedPref.getBoolean(getString(R.string.introTutorial), false)
 
-        if (tutorialDone) {
-            graph.startDestination = R.id.locationFragment
-        } else {
-            graph.startDestination = R.id.viewPagerFragment
-        }
+//        if (tutorialDone) {
+//            graph.startDestination = R.id.locationFragment
+//        } else {
+//            graph.startDestination = R.id.viewPagerFragment
+//        }
 
         navHost.navController.graph = graph
         NavigationUI.setupActionBarWithNavController(this, navHost.navController)

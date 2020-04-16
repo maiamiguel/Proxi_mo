@@ -32,9 +32,9 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import java.io.IOException
 
-class LocationFragment : Fragment() , AdapterView.OnItemSelectedListener {
+class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
+    private lateinit var districtSpinner: Spinner
     private val PERMISSION_ID = 42
-    lateinit var districtSpinner : Spinner
 
     /**
      * Lazily initialize our [LocationViewModel].
@@ -59,9 +59,10 @@ class LocationFragment : Fragment() , AdapterView.OnItemSelectedListener {
         //Request Location
         getLastLocation()
 
+        districtSpinner = binding.district
+
         // you need to have a list of data that you want the spinner to display
         val spinnerArray: MutableList<String> = ArrayList()
-
         viewModel.properties.observe(
                 this.viewLifecycleOwner,
                 Observer { t ->
@@ -74,10 +75,13 @@ class LocationFragment : Fragment() , AdapterView.OnItemSelectedListener {
                     }
                 })
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), R.layout.simple_spinner_item, spinnerArray)
+        val paths = arrayOf("item 1", "item 2", "item 3")
 
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        districtSpinner = binding.district
+        val adapter: ArrayAdapter<String>? = context?.let {
+            ArrayAdapter<String>(it, R.layout.simple_spinner_item, paths)
+        }
+
+        adapter?.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         districtSpinner.adapter = adapter
         districtSpinner.onItemSelectedListener = this
 
@@ -122,7 +126,7 @@ class LocationFragment : Fragment() , AdapterView.OnItemSelectedListener {
     private fun reverseGeocoder(latitude: Double, longitude: Double) {
         try {
             val searchApi = context?.let { OnlineSearchApi.create(it) }
-            searchApi?.reverseGeocoding(ReverseGeocoderSearchQueryBuilder(40.8035515,-8.5693427).build())
+            searchApi?.reverseGeocoding(ReverseGeocoderSearchQueryBuilder(40.8035515, -8.5693427).build())
                     ?.subscribeOn(Schedulers.io())
                     ?.observeOn(AndroidSchedulers.mainThread())
                     ?.subscribe(object : DisposableSingleObserver<ReverseGeocoderSearchResponse?>() {
@@ -182,7 +186,6 @@ class LocationFragment : Fragment() , AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
+        Log.d("debug", parent?.getItemAtPosition(position).toString())
     }
 }
