@@ -31,14 +31,14 @@ class WelcomeFragment : Fragment() {
             val pos = getInt(ARG_OBJECT)
 
             if (pos == 0){
-                img.setImageResource(R.drawable.viewpager_img_1)
+                img.setImageResource(R.drawable.viewpagerimg1)
                 titleTextView.text = getString(R.string.welcome_text)
                 descriptionTextView.text = getString(R.string.description1)
                 btn.visibility = (View.INVISIBLE);
             }
 
             if (pos == 1){
-                img.setImageResource(R.drawable.viewpager_img_2)
+                img.setImageResource(R.drawable.img2)
                 titleTextView.text = getString(R.string.list_services)
                 descriptionTextView.text = getString(R.string.description1)
                 btn.visibility = (View.INVISIBLE);

@@ -27,7 +27,8 @@ class ServicesViewModel(selectedTypesOfServices: Category, county: String, app: 
     private fun companies_by_location(typeOfService : Category, county : String){
         viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
-            val getPropertiesDeferred =  Api.retrofitService.companies_by_locationAsync(county)
+            //val getPropertiesDeferred =  Api.retrofitService.companies_by_locationAsync(county)
+            val getPropertiesDeferred =  Api.retrofitService.companies_by_location_district_Async("Viseu")
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()

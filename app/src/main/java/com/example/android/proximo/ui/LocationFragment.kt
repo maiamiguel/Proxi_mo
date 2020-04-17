@@ -1,7 +1,7 @@
 package com.example.android.proximo.ui
 
-import android.Manifest
 import android.R
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -77,7 +77,7 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val paths = arrayOf("item 1", "item 2", "item 3")
 
         val adapter: ArrayAdapter<String>? = context?.let {
-            ArrayAdapter<String>(it, R.layout.simple_spinner_item, paths)
+            ArrayAdapter<String>(it, com.example.android.proximo.R.layout.spinner_item_text, paths)
         }
 
         adapter?.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Próx_imo</string>
+    <string name="app_name">proxi_mo</string>
     <string name="companies">Serviços</string>
 
-    <string name="welcome_text">Bem-vindo(a) ao prox_imo!</string>
+    <string name="welcome_text">Bem-vindo ao proxi_mo!</string>
     <string name="description1">Lorem Ipsum dolor sit amet, consectetur adipiscing elit. In eu vulputate nibh.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor placerat, commodo arcu a, malesuada ante.</string>
     <string name="list_services">Listagem de serviços</string>
@@ -10,7 +10,7 @@
     <string name="start">Começar</string>
     <string name="introTutorial">tutorial</string>
     <string name="confirm_location">Foi detectado que se encontra na seguinte localização. Por favor confirme ou altere os seus dados:</string>
-    <string name="introText">prox_imo</string>
+    <string name="introText">proxi_mo</string>
     <string name="tutorial">Tutorial</string>
     <string name="no_info_provided">Não existe essa informação..</string>
 </resources>

@@ -12,7 +12,8 @@
         android:id="@+id/context_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/viewPagerDefault"    >
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -158,7 +159,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/facebookIMG"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:srcCompat="@drawable/icon_instagram"
+                    app:srcCompat="@drawable/instagram"
+                    android:tint="@color/viewPagerDefault"
                     android:focusable="true" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

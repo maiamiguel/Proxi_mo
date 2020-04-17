@@ -55,6 +55,11 @@ interface ApiService {
     fun companies_by_locationAsync(
             @Query("county") county: String?
     ): Deferred<CompaniesByLocationResponse>
+
+    @GET("companies_by_location")
+    fun companies_by_location_district_Async(
+            @Query("district") district: String?
+    ): Deferred<CompaniesByLocationResponse>
 }
 
 /**
