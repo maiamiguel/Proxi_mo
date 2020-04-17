@@ -31,7 +31,7 @@ class LocationViewModel : ViewModel() {
     private fun getServicesCategories() {
         viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
-            val getPropertiesDeferred =  Api.retrofitService.getDistricts()
+            val getPropertiesDeferred =  Api.retrofitService.getDistrictsAsync()
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
@@ -50,7 +50,7 @@ class LocationViewModel : ViewModel() {
     private fun counties_by_distric(district: String){
         viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
-            val getPropertiesDeferred =  Api.retrofitService.counties_by_distric(district)
+            val getPropertiesDeferred =  Api.retrofitService.counties_by_districAsync(district)
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()

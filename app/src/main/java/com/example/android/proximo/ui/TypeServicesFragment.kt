@@ -5,7 +5,9 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.android.proximo.R
 import com.example.android.proximo.viewmodels.OverviewViewModel
 import com.example.android.proximo.adapters.TypeServicesAdapter
@@ -48,7 +50,7 @@ class TypeServicesFragment : Fragment() {
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if ( null != it ) {
                 // Must find the NavController from the Fragment
-                this.findNavController().navigate(TypeServicesFragmentDirections.actionShowDetail(it))
+                this.findNavController().navigate(TypeServicesFragmentDirections.actionShowServices(it))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }
@@ -58,26 +60,12 @@ class TypeServicesFragment : Fragment() {
         return binding.root
     }
 
-    /**
-     * Inflates the overflow menu that contains filtering options.
-     */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.overflow_menu, menu)
     }
 
-    /**
-     * Updates the filter in the [OverviewViewModel] when the menu items are selected from the
-     * overflow menu.
-     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        viewModel.updateFilter(
-//                when (item.itemId) {
-//                    R.id.show_rent_menu -> MarsApiFilter.SHOW_RENT
-//                    R.id.show_buy_menu -> MarsApiFilter.SHOW_BUY
-//                    else -> MarsApiFilter.SHOW_ALL
-//                }
-//        )
-        return true
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
 }

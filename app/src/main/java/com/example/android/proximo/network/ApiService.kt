@@ -34,25 +34,25 @@ private val retrofit = Retrofit.Builder()
         .build()
 
 /**
- * A public interface that exposes the [getProperties] method
+ * A public interface that exposes the [getServicesTypesAsync], [getDistrictsAsync], [counties_by_districAsync], [companies_by_locationAsync] method
  */
 interface ApiService {
 
     @GET("categories")
-    fun getServicesTypes():
+    fun getServicesTypesAsync():
     Deferred<ListTypeofServices>
 
     @GET("all_districts")
-    fun getDistricts():
+    fun getDistrictsAsync():
     Deferred<ListDistricts>
 
     @GET("counties_by_distric")
-    fun counties_by_distric(
+    fun counties_by_districAsync(
             @Query("district") district: String?
     ): Deferred<ResponseCompany>
 
     @GET("companies_by_location")
-    fun companies_by_location(
+    fun companies_by_locationAsync(
             @Query("county") county: String?
     ): Deferred<CompaniesByLocationResponse>
 }

@@ -1,7 +1,9 @@
 package com.example.android.proximo.adapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -67,5 +69,15 @@ fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
         MarsApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
+    }
+}
+
+@BindingAdapter("homeDelivery")
+fun homeDeliveryText(text: TextView, homeDelivery: Boolean) {
+    if (homeDelivery){
+        text.text = "Entregas ao domicílio: Sim"
+    }
+    else{
+        text.text = "Entregas ao domicílio: Não"
     }
 }

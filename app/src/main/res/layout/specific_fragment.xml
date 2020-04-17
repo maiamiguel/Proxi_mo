@@ -9,6 +9,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/context_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -96,7 +97,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Entregas ao domicílio: Não"
+                    homeDelivery="@{viewModel.selectedCompany.home_delivery}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/telephone" />
@@ -125,7 +126,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/facebookIMG"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:srcCompat="@drawable/icon_location" />
+                    app:srcCompat="@drawable/icon_location"
+                    android:focusable="true" />
 
                 <ImageView
                     android:id="@+id/facebookIMG"
@@ -141,7 +143,8 @@
                     app:layout_constraintStart_toEndOf="@+id/googleMapsIMG"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
                     app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/icon_facebook" />
+                    app:srcCompat="@drawable/icon_facebook"
+                    android:focusable="true" />
 
                 <ImageView
                     android:id="@+id/instagramIMG"
@@ -155,7 +158,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/facebookIMG"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:srcCompat="@drawable/icon_instagram" />
+                    app:srcCompat="@drawable/icon_instagram"
+                    android:focusable="true" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

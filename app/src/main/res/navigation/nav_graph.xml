@@ -32,34 +32,34 @@
         android:label="@string/location" >
         <action
             android:id="@+id/action_locationFragment_to_overviewFragment"
-            app:destination="@id/overviewFragment" />
+            app:destination="@id/typesServicesFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/overviewFragment"
+        android:id="@+id/typesServicesFragment"
         android:name="com.example.android.proximo.ui.TypeServicesFragment"
         android:label="@string/companies"
         tools:layout="@layout/fragment_list_services_types">
         <action
-            android:id="@+id/action_showDetail"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_showServices"
+            app:destination="@id/servicesFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/detailFragment"
+        android:id="@+id/servicesFragment"
         android:name="com.example.android.proximo.ui.ServicesFragment"
-        android:label="fragment_detail"
+        android:label="@string/companies"
         tools:layout="@layout/fragment_list_services">
         <argument android:name="selectedTypesOfServices" />
         <action
             android:id="@+id/action_specificService"
-            app:destination="@id/specificCompany" />
+            app:destination="@id/specificServiceFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/specificCompany"
+        android:id="@+id/specificServiceFragment"
         android:name="com.example.android.proximo.ui.SpecificServiceFragment"
-        android:label="specific_fragment"
+        android:label="@string/companies"
         tools:layout="@layout/specific_fragment">
         <argument
             app:argType="com.example.android.proximo.models.Company"

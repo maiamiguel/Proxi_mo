@@ -60,7 +60,7 @@ class OverviewViewModel : ViewModel() {
      private fun getServicesCategories() {
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            val getPropertiesDeferred =  Api.retrofitService.getServicesTypes()
+            val getPropertiesDeferred =  Api.retrofitService.getServicesTypesAsync()
             try {
                 _status.value = MarsApiStatus.LOADING
                 // this will run on a thread managed by Retrofit
