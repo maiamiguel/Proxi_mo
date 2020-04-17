@@ -9,11 +9,9 @@ import com.example.android.proximo.network.Api
 import kotlinx.coroutines.launch
 
 class LocationViewModel : ViewModel() {
-
     // Internally, we use a MutableLiveData, because we will be updating the List of MarsProperty
     // with new values
     private val _properties = MutableLiveData<List<String>>()
-
     // The external LiveData interface to the property is immutable, so only this class can modify
     val properties: LiveData<List<String>>
         get() = _properties
@@ -31,10 +29,10 @@ class LocationViewModel : ViewModel() {
     private fun getServicesCategories() {
         viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
-            val getPropertiesDeferred =  Api.retrofitService.getDistrictsAsync()
+            val categoriesServices =  Api.retrofitService.getDistrictsAsync()
             try {
                 // this will run on a thread managed by Retrofit
-                val listResult = getPropertiesDeferred.await()
+                val listResult = categoriesServices.await()
                 _properties.value = listResult.districts
             } catch (e: Exception) {
                 Log.e("error", e.toString())
@@ -55,7 +53,7 @@ class LocationViewModel : ViewModel() {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
                 _countiesByDistrict.value = listResult.counties
-                Log.d("debug", "FODASSE ${listResult.counties}")
+                Log.d("debug", "Locations ${listResult.counties}")
                 for (county in listResult.counties){
                     if (county[0] == "Estarreja"){
                         Log.d("debug", "VOILÀ")

@@ -6,5 +6,5 @@ class ListTypeofServices(
     @Json(name = "state")
     val state : String,
     @Json(name = "categories")
-    val categories : List<String>
+    val categories : List<Category>
 )

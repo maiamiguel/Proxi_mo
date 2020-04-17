@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.android.proximo.R
+import com.example.android.proximo.models.Category
 import com.example.android.proximo.models.Company
 import com.example.android.proximo.viewmodels.MarsApiStatus
 
@@ -17,7 +18,7 @@ import com.example.android.proximo.viewmodels.MarsApiStatus
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
  */
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<String>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Category>?) {
     val adapter = recyclerView.adapter as TypeServicesAdapter
     adapter.submitList(data)
 }

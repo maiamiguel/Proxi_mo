@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.android.proximo.viewmodels.OverviewViewModel" />
+            type="com.example.android.proximo.viewmodels.TypeServicesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

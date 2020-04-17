@@ -12,6 +12,7 @@ import com.example.android.proximo.viewmodels.ServicesViewModel
 import com.example.android.proximo.viewmodels.ServicesViewModelFactory
 import com.example.android.proximo.adapters.ServiceItemAdapter
 import com.example.android.proximo.databinding.FragmentListServicesBinding
+import com.example.android.proximo.models.Category
 
 /**
  * This [Fragment] shows the detailed information about a selected piece of Mars real estate.
@@ -26,8 +27,13 @@ class ServicesFragment : Fragment() {
         val binding = FragmentListServicesBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val selectedTypesOfServices : String = ServicesFragmentArgs.fromBundle(requireArguments()).selectedTypesOfServices
-        val viewModelFactory = ServicesViewModelFactory(selectedTypesOfServices, application)
+        val selectedTypesOfServices : Category = ServicesFragmentArgs.fromBundle(requireArguments()).selectedTypesOfServices
+        val county : String = ServicesFragmentArgs.fromBundle(requireArguments()).county
+
+        // Setting actionBar title
+        (activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices.display
+
+        val viewModelFactory = ServicesViewModelFactory(selectedTypesOfServices, county, application)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(ServicesViewModel::class.java)
 
@@ -63,7 +69,7 @@ class ServicesFragment : Fragment() {
             }
         })
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices
+
         return binding.root
     }
 }

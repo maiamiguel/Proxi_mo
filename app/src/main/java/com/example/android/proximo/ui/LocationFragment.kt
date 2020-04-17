@@ -20,7 +20,6 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.birjuvachhani.locus.Locus
 import com.example.android.proximo.databinding.LocationFragmentBinding
@@ -69,7 +68,6 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 Observer { t ->
                     t.let {
                         // Sets new Data to RecyclerView
-                        Log.d("debug", "districts")
                         for (district in it) {
                             spinnerArray.add(district)
                         }
@@ -87,7 +85,7 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
         districtSpinner.onItemSelectedListener = this
 
         binding.ackBTN.setOnClickListener {
-            findNavController().navigate(com.example.android.proximo.R.id.action_locationFragment_to_overviewFragment)
+            findNavController().navigate(LocationFragmentDirections.actionLocationFragmentToOverviewFragment("Estarreja"))
         }
 
         return binding.root
@@ -137,8 +135,8 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             Log.d("debug", "Distrito - ${response.addresses.get(0).address.countrySecondarySubdivision}")
                             Log.d("debug", "País - ${response.addresses.get(0).address.country}")
 
-                            setDistrictSpinner(districtSpinner, response.addresses.get(0).address.countrySecondarySubdivision)
-                            viewModel.searchCounties(response.addresses.get(0).address.countrySecondarySubdivision)
+                            //setDistrictSpinner(districtSpinner, response.addresses.get(0).address.countrySecondarySubdivision)
+                            //viewModel.searchCounties(response.addresses.get(0).address.countrySecondarySubdivision)
                         }
 
                         override fun onError(e: Throwable) {
@@ -187,6 +185,6 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Log.d("debug", parent?.getItemAtPosition(position).toString())
+        //parent?.getItemAtPosition(position)
     }
 }
