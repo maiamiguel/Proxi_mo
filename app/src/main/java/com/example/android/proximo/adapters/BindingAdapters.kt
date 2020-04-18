@@ -1,18 +1,21 @@
 package com.example.android.proximo.adapters
 
-import android.util.Log
+import android.graphics.Bitmap
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.example.android.proximo.R
 import com.example.android.proximo.models.Category
 import com.example.android.proximo.models.Company
 import com.example.android.proximo.viewmodels.MarsApiStatus
+
 
 /**
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
@@ -45,7 +48,8 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
                 .load(imgUri)
                 .apply(RequestOptions()
                         .placeholder(R.drawable.loading_animation)
-                        .error(R.drawable.ic_broken_image))
+                        .error(R.drawable.fotodeperfilprox))
+                .apply(RequestOptions().circleCrop())
                 .into(imgView)
     }
 }
