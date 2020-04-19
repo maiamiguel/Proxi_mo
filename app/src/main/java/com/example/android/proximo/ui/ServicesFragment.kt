@@ -14,11 +14,6 @@ import com.example.android.proximo.adapters.ServiceItemAdapter
 import com.example.android.proximo.databinding.FragmentListServicesBinding
 import com.example.android.proximo.models.Category
 
-/**
- * This [Fragment] shows the detailed information about a selected piece of Mars real estate.
- * It sets this information in the [ServicesViewModel], which it gets as a Parcelable property
- * through Jetpack Navigation's SafeArgs.
- */
 class ServicesFragment : Fragment() {
     private lateinit var viewModel : ServicesViewModel
 
@@ -68,7 +63,6 @@ class ServicesFragment : Fragment() {
                 viewModel.displayServiceDetailsComplete()
             }
         })
-
 
         return binding.root
     }

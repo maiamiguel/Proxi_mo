@@ -35,44 +35,41 @@ class SpecificServiceFragment : Fragment() {
         binding.viewModel = viewModel
 
         val googleMapsIMG: ImageView = binding.googleMapsIMG
-        googleMapsIMG.setOnClickListener {
-            if (specificCompany.gmaps_url != "") {
+        if (specificCompany.gmaps_url == "") {
+            googleMapsIMG.alpha = 0.3f
+        } else {
+            googleMapsIMG.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_VIEW
                 intent.addCategory(Intent.CATEGORY_BROWSABLE)
                 intent.data = Uri.parse(specificCompany.gmaps_url)
                 startActivity(intent)
-            } else {
-                val contextView: View = binding.contextView
-                Snackbar.make(contextView, R.string.no_info_provided, Snackbar.LENGTH_SHORT).show();
             }
         }
 
         val facebookIMG: ImageView = binding.facebookIMG
-        facebookIMG.setOnClickListener {
-            if (specificCompany.social.facebook != "") {
+        if (specificCompany.social.facebook == "") {
+            facebookIMG.alpha = 0.3f
+        } else {
+            facebookIMG.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_VIEW
                 intent.addCategory(Intent.CATEGORY_BROWSABLE)
                 intent.data = Uri.parse(specificCompany.social.facebook)
                 startActivity(intent)
-            } else {
-                val contextView: View = binding.contextView
-                Snackbar.make(contextView, R.string.no_info_provided, Snackbar.LENGTH_SHORT).show();
             }
         }
 
         val instagramIMG: ImageView = binding.instagramIMG
-        instagramIMG.setOnClickListener {
-            if (specificCompany.social.instagram != "") {
+        if (specificCompany.social.instagram == "") {
+            instagramIMG.alpha = 0.3f
+        } else {
+            instagramIMG.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_VIEW
                 intent.addCategory(Intent.CATEGORY_BROWSABLE)
                 intent.data = Uri.parse(specificCompany.social.instagram)
                 startActivity(intent)
-            } else {
-                val contextView: View = binding.contextView
-                Snackbar.make(contextView, getString(R.string.no_info_provided), Snackbar.LENGTH_SHORT).show();
             }
         }
 

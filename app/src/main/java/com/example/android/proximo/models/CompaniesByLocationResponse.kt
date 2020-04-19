@@ -6,8 +6,8 @@ class CompaniesByLocationResponse(
     @Json(name = "state")
     val state: String,
 
-    @Json(name = "district")
-    val district: String,
+    @Json(name = "county")
+    val county: String,
 
     @Json(name = "companies")
     val companies: Map<String,Company>

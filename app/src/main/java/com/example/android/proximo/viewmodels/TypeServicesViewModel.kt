@@ -2,10 +2,7 @@ package com.example.android.proximo.viewmodels
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.android.proximo.models.Category
 import com.example.android.proximo.network.Api
 import kotlinx.coroutines.CoroutineScope
@@ -14,10 +11,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.coroutines.CoroutineContext
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 
-class TypeServicesViewModel(county: String, app: Application) : AndroidViewModel(app){
+class TypeServicesViewModel(county: String, app: Application) : AndroidViewModel(app) {
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<MarsApiStatus>()
@@ -41,12 +39,6 @@ class TypeServicesViewModel(county: String, app: Application) : AndroidViewModel
     val navigateToSelectedProperty: LiveData<Category>
         get() = _navigateToSelectedProperty
 
-    // Create a Coroutine scope using a job to be able to cancel when needed
-    private var viewModelJob = Job()
-
-    // the Coroutine runs using the Main (UI) dispatcher
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
      */
@@ -63,12 +55,11 @@ class TypeServicesViewModel(county: String, app: Application) : AndroidViewModel
      * @param filter the [MarsApiFilter] that is sent as part of the web server request
      */
     private fun getServicesCategories() {
-        coroutineScope.launch {
+        viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
             val getPropertiesDeferred = Api.retrofitService.getServicesTypesAsync()
             try {
                 _status.value = MarsApiStatus.LOADING
-                // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
                 _status.value = MarsApiStatus.DONE
 
@@ -81,15 +72,6 @@ class TypeServicesViewModel(county: String, app: Application) : AndroidViewModel
                 _properties.value = ArrayList()
             }
         }
-    }
-
-    /**
-     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-     * Retrofit service to stop.
-     */
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 
     /**

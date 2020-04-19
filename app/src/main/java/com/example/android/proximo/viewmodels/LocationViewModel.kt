@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.proximo.network.Api
 import kotlinx.coroutines.launch
 
+enum class LocationStatus {LOCATING, ERROR, DONE}
+
 class LocationViewModel : ViewModel() {
     // Internally, we use a MutableLiveData, because we will be updating the List of MarsProperty
     // with new values
@@ -21,6 +23,16 @@ class LocationViewModel : ViewModel() {
     // The external LiveData interface to the property is immutable, so only this class can modify
     val countiesByDistrict: LiveData<List<List<String>>>
         get() = _countiesByDistrict
+
+    private val _location = MutableLiveData<LocationStatus>()
+
+    val location : LiveData<LocationStatus>
+        get() = _location
+
+    private val _doneLocating = MutableLiveData<Boolean>()
+
+    val doneLocating : LiveData<Boolean>
+        get() = _doneLocating
 
     init {
         getServicesCategories()
@@ -39,6 +51,19 @@ class LocationViewModel : ViewModel() {
                 _properties.value = ArrayList()
             }
         }
+    }
+
+    fun setError(){
+        _location.value = LocationStatus.ERROR
+    }
+
+    fun locating(){
+        _location.value = LocationStatus.LOCATING
+    }
+
+    fun doneLocating(){
+        _location.value = LocationStatus.DONE
+        _doneLocating.value = true
     }
 
     fun searchCounties(district : String){

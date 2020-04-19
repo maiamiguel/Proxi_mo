@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">proxi_mo</string>
     <string name="companies">Serviços</string>
-
     <string name="welcome_text">Bem-vindo ao proxi_mo!</string>
-    <string name="description1">Lorem Ipsum dolor sit amet, consectetur adipiscing elit. In eu vulputate nibh.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor placerat, commodo arcu a, malesuada ante.</string>
+
+    <string name="description1">O nosso objetivo é facilitar a vida da população, juntando numa única plataforma informação fidedigna e atualizada acerca de grandes superfícies ou comércios locais localizados na sua área de residência.
+        Assim, pode evitar perdas de tempo ou saídas de casa desnecessárias, num período em que evitar ajuntamentos de pessoas é essencial.</string>
+
+    <string name="description2">Pode encontrar os diferentes serviços e estabelecimentos que se encontram disponíveis na sua zona:
+        Farmácias, Supermercados, Take-Aways, Veterinários, entre outros.</string>
+
+    <string name="description3">De forma a tornar a experiência mais agradável e completa, iremos obter a sua localização automaticamente, se assim o permitir.</string>
+
     <string name="list_services">Listagem de serviços</string>
     <string name="location">Localização</string>
     <string name="start">Começar</string>
@@ -13,4 +19,11 @@
     <string name="introText">proxi_mo</string>
     <string name="tutorial">Tutorial</string>
     <string name="no_info_provided">Não existe essa informação..</string>
+    <string name="gettingLocation">Estamos a obter os dados da sua localização, por favor aguarde :)</string>
+    <string name="error">Ocorreu um erro.. tente novamente!</string>
+    <string name="changeLocationText">Altere aqui os campos pretendidos começando pelo distrito:</string>
+    <string name="district">Distrito: </string>
+    <string name="county">Concelho: </string>
+    <string name="parish">Freguesia: </string>
+    <string name="changeLocation">Alterar localização</string>
 </resources>

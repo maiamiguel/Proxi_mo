@@ -7,7 +7,16 @@ import com.example.android.proximo.models.*
 import com.example.android.proximo.network.Api
 import kotlinx.coroutines.launch
 
+enum class ApiStatus { LOADING, ERROR, DONE, NONE }
+
 class ServicesViewModel(selectedTypesOfServices: Category, county: String, app: Application) : AndroidViewModel(app) {
+    // The internal MutableLiveData that stores the status of the most recent request
+    private val _status = MutableLiveData<ApiStatus>()
+
+    // The external immutable LiveData for the request status
+    val status: LiveData<ApiStatus>
+        get() = _status
+
     private val _navigateToSelectedProperty = MutableLiveData<Company>()
 
     val navigateToSelectedProperty: LiveData<Company>
@@ -27,10 +36,9 @@ class ServicesViewModel(selectedTypesOfServices: Category, county: String, app: 
     private fun companies_by_location(typeOfService : Category, county : String){
         viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
-            //val getPropertiesDeferred =  Api.retrofitService.companies_by_locationAsync(county)
-            val getPropertiesDeferred =  Api.retrofitService.companies_by_location_district_Async("Viseu")
+            val getPropertiesDeferred =  Api.retrofitService.companies_by_locationAsync(county)
             try {
-                // this will run on a thread managed by Retrofit
+                _status.value = ApiStatus.LOADING
                 val listResult = getPropertiesDeferred.await()
 
                 for (company in listResult.companies){
@@ -43,9 +51,17 @@ class ServicesViewModel(selectedTypesOfServices: Category, county: String, app: 
                 }
 
                 _services.value = companiesList
+
+                if (companiesList.size > 0){
+                    _status.value = ApiStatus.DONE
+                }
+                else{
+                    _status.value = ApiStatus.NONE
+                }
             } catch (e: Exception) {
                 Log.e("error", e.toString())
 //                _services.value = ArrayList()
+                _status.value = ApiStatus.ERROR
             }
         }
     }

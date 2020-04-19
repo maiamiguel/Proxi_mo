@@ -11,13 +11,13 @@
     <LinearLayout
         android:id="@+id/context_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/viewPagerDefault"    >
+        android:layout_height="match_parent"
+        android:background="@color/viewPagerDefault"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="35dp"
             app:cardCornerRadius="20dp">
 
@@ -27,12 +27,12 @@
 
                 <ImageView
                     android:id="@+id/service_logo"
+                    imageUrl="@{viewModel.selectedCompany.images.logo}"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="80dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    imageUrl="@{viewModel.selectedCompany.images.logo}"
                     app:layout_constraintBottom_toTopOf="@+id/name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +46,12 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@{viewModel.selectedCompany.name}"
                     android:textAlignment="viewStart"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/address"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -93,18 +95,18 @@
 
                 <TextView
                     android:id="@+id/home_delivery"
+                    homeDelivery="@{viewModel.selectedCompany.home_delivery}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    homeDelivery="@{viewModel.selectedCompany.home_delivery}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/telephone" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/notes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -120,48 +122,43 @@
                     android:layout_width="60dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
                     android:layout_marginBottom="24dp"
                     android:clickable="true"
+                    android:focusable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/facebookIMG"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:srcCompat="@drawable/icon_location"
-                    android:focusable="true" />
+                    app:layout_constraintTop_toTopOf="@+id/facebookIMG"
+                    app:srcCompat="@drawable/icon_location" />
 
                 <ImageView
                     android:id="@+id/facebookIMG"
                     android:layout_width="60dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="24dp"
                     android:clickable="true"
+                    android:focusable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/instagramIMG"
                     app:layout_constraintStart_toEndOf="@+id/googleMapsIMG"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/icon_facebook"
-                    android:focusable="true" />
+                    app:srcCompat="@drawable/icon_facebook" />
 
                 <ImageView
                     android:id="@+id/instagramIMG"
                     android:layout_width="60dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
                     android:clickable="true"
+                    android:focusable="true"
+                    android:tint="@color/viewPagerDefault"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/facebookIMG"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:srcCompat="@drawable/instagram"
-                    android:tint="@color/viewPagerDefault"
-                    android:focusable="true" />
+                    app:layout_constraintTop_toTopOf="@+id/facebookIMG"
+                    app:srcCompat="@drawable/instagram" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

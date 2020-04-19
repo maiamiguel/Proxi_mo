@@ -1,8 +1,10 @@
 package com.example.android.proximo.ui
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,12 +22,14 @@ class InitialFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
-        val sharedPref = this.activity?.getPreferences(Context.MODE_PRIVATE)
-        val tutorialDone = sharedPref!!.getBoolean(getString(R.string.introTutorial), false)
+        val sharedPref : SharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE)!!
+        val tutorialDone = sharedPref.getBoolean(getString(R.string.introTutorial), false)
+
+        Log.d("debug", "SHARED PREFERECES ${tutorialDone}")
 
         val textView = binding.title
-        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Proxima_Nova_Thin.otf")
-        textView.typeface = typeface
+        val proxima = Typeface.createFromAsset(context?.assets, "fonts/Proxima_Nova_Bold.otf")
+        textView.typeface = proxima
 
         binding.btn.setOnClickListener {
             if (tutorialDone) {

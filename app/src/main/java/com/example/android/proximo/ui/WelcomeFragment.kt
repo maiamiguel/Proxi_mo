@@ -1,14 +1,13 @@
 package com.example.android.proximo.ui
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.android.proximo.R
@@ -21,10 +20,16 @@ class WelcomeFragment : Fragment() {
         val binding = FragmentWelcomeBinding.inflate(inflater)
 
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+            val sharedPref : SharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE)!!
 
             val titleTextView = binding.titleText
+            val proximaBold = Typeface.createFromAsset(context?.assets, "fonts/Proxima_Nova_Extrabold.otf")
+            titleTextView.typeface = proximaBold
+
             val descriptionTextView = binding.descriptionText
+            val proximaRegular = Typeface.createFromAsset(context?.assets, "fonts/Proxima_Nova_Bold.otf")
+            titleTextView.typeface = proximaRegular
+
             val img = binding.img
             val btn = binding.btnStart
 
@@ -40,19 +45,20 @@ class WelcomeFragment : Fragment() {
             if (pos == 1){
                 img.setImageResource(R.drawable.img2)
                 titleTextView.text = getString(R.string.list_services)
-                descriptionTextView.text = getString(R.string.description1)
+                descriptionTextView.text = getString(R.string.description2)
                 btn.visibility = (View.INVISIBLE);
             }
 
             if (pos == 2){
                 img.setImageResource(R.drawable.viewpager_img_3)
                 titleTextView.text = getString(R.string.location)
-                descriptionTextView.text = getString(R.string.description1)
+                descriptionTextView.text = getString(R.string.description3)
                 btn.visibility = (View.VISIBLE);
                 btn.setOnClickListener {
-                    with (sharedPref?.edit()) {
+                    Log.d("debug", "CLICK SHARED PREFERENCES")
+                    with (sharedPref.edit()) {
                         putBoolean(getString(R.string.introTutorial), true)
-                        this?.commit()
+                        this.commit()
                     }
                     findNavController().navigate(R.id.action_viewPagerFragment_to_locationFragment)
                 }
@@ -60,12 +66,7 @@ class WelcomeFragment : Fragment() {
 
             Log.d("debug", "Args ${getInt(ARG_OBJECT)}")
         }
-
         return binding.root
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
     }
 
     // newInstance constructor for creating fragment with arguments
