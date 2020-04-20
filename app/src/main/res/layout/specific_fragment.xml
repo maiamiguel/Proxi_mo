@@ -119,8 +119,8 @@
 
                 <ImageView
                     android:id="@+id/googleMapsIMG"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="24dp"
                     android:clickable="true"
@@ -133,8 +133,8 @@
 
                 <ImageView
                     android:id="@+id/facebookIMG"
-                    android:layout_width="60dp"
-                    android:layout_height="0dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="24dp"
@@ -147,7 +147,7 @@
 
                 <ImageView
                     android:id="@+id/instagramIMG"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"

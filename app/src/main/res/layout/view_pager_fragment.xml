@@ -41,7 +41,7 @@
                 app:dampingRatio="0.5"
                 app:dotsColor="@color/viewPagerSelected"
                 app:dotsCornerRadius="10dp"
-                app:dotsSize="16dp"
+                app:dotsSize="12dp"
                 app:dotsSpacing="15dp"
                 app:dotsStrokeColor="@color/viewPagerDefault"
                 app:dotsStrokeWidth="2dp"

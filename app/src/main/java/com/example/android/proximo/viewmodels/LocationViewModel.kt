@@ -65,29 +65,4 @@ class LocationViewModel : ViewModel() {
         _location.value = LocationStatus.DONE
         _doneLocating.value = true
     }
-
-    fun searchCounties(district : String){
-        counties_by_distric(district)
-    }
-
-    private fun counties_by_distric(district: String){
-        viewModelScope.launch {
-            // Get the Deferred object for our Retrofit request
-            val getPropertiesDeferred =  Api.retrofitService.counties_by_districAsync(district)
-            try {
-                // this will run on a thread managed by Retrofit
-                val listResult = getPropertiesDeferred.await()
-                _countiesByDistrict.value = listResult.counties
-                Log.d("debug", "Locations ${listResult.counties}")
-                for (county in listResult.counties){
-                    if (county[0] == "Estarreja"){
-                        Log.d("debug", "VOILÀ")
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("error", e.toString())
-                _properties.value = ArrayList()
-            }
-        }
-    }
 }

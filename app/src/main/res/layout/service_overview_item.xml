@@ -17,12 +17,12 @@
 
         <ImageView
             android:id="@+id/service_logo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            imageUrl="@{service.images.logo}"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginBottom="-35dp"
-            android:elevation="3dp"
-            imageUrl="@{service.images.logo}" />
+            android:elevation="3dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

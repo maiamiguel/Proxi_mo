@@ -26,4 +26,6 @@
     <string name="county">Concelho: </string>
     <string name="parish">Freguesia: </string>
     <string name="changeLocation">Alterar localização</string>
+    <string name="confirm">Confirmar</string>
+    <string name="change">Alterar</string>
 </resources>

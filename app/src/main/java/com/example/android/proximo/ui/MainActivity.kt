@@ -1,5 +1,6 @@
 package com.example.android.proximo.ui
 
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -21,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
+        //TODO: This is not ok to do. Not a good pratice. Needs change! (no time now)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT//Set Portrait
+
         // Configure the navigation
         val navHost = myNavHostFragment as NavHostFragment
         NavigationUI.setupActionBarWithNavController(this, navHost.navController)
@@ -32,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         val navController = this.findNavController(R.id.myNavHostFragment)
 
-        // prevent nav gesture if not on start destination
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
             if (nd.id == nc.graph.startDestination) {
                 supportActionBar?.hide()

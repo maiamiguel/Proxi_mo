@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="45dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="45dp"
             android:text="@string/gettingLocation"
             android:textAlignment="center"
@@ -49,14 +49,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
             android:backgroundTint="@color/viewPagerDefault"
+            android:visibility="invisible"
             app:cardCornerRadius="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/ackBTN"
+            app:layout_constraintBottom_toTopOf="@+id/changeLocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text"
-            android:visibility="invisible"
             app:locationStatus="@{viewModel.location}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,7 +63,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/districtLabel"
+                    android:id="@+id/district"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -83,7 +82,7 @@
                     android:text="@string/county"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/districtLabel" />
+                    app:layout_constraintTop_toBottomOf="@+id/district" />
 
                 <TextView
                     android:id="@+id/parishLabel"
@@ -108,7 +107,7 @@
                     android:text="TextView"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/districtLabel"
+                    app:layout_constraintStart_toEndOf="@+id/district"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -134,38 +133,40 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <ImageView
+        <Button
             android:id="@+id/ackBTN"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="24dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:rotation="180"
-            android:src="@drawable/next_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/roundedbutton"
+            android:text="@string/confirm"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:tint="@color/viewPagerDefault"
             android:visibility="invisible"
+            app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:locationStatus="@{viewModel.location}" />
 
-        <ImageView
+        <Button
             android:id="@+id/changeLocation"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
+            android:background="@drawable/roundedbutton"
             android:src="@drawable/change_location_icon"
+            android:text="@string/change"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:tint="@color/viewPagerDefault"
-            app:locationStatus="@{viewModel.location}"
             android:visibility="invisible"
+            app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toTopOf="@+id/ackBTN"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/ackBTN"
+            app:layout_constraintStart_toStartOf="@+id/ackBTN"
+            app:locationStatus="@{viewModel.location}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
