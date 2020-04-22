@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="OnlineMaps.Key" android:value="F7l4hDAu5RcCKTJN0dxIw9HgjIOj08ly" />
-        <meta-data android:name="OnlineTraffic.Key" android:value="F7l4hDAu5RcCKTJN0dxIw9HgjIOj08ly" />
-        <meta-data android:name="OnlineSearch.Key" android:value="F7l4hDAu5RcCKTJN0dxIw9HgjIOj08ly" />
-        <meta-data android:name="OnlineRouting.Key" android:value="F7l4hDAu5RcCKTJN0dxIw9HgjIOj08ly" />
-        <meta-data android:name="GeofencingApi.Key" android:value="F7l4hDAu5RcCKTJN0dxIw9HgjIOj08ly" />
+        <meta-data android:name="OnlineMaps.Key" android:value="" />
+        <meta-data android:name="OnlineTraffic.Key" android:value="" />
+        <meta-data android:name="OnlineSearch.Key" android:value="" />
+        <meta-data android:name="OnlineRouting.Key" android:value="" />
+        <meta-data android:name="GeofencingApi.Key" android:value="" />
     </application>
 </manifest>
