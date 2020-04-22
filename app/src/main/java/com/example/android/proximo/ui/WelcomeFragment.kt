@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,21 +35,21 @@ class WelcomeFragment : Fragment() {
             val pos = getInt(ARG_OBJECT)
 
             if (pos == 0){
-                img.setImageResource(R.drawable.viewpager_img_1)
+                img.setImageResource(R.drawable.tutorial1)
                 titleTextView.text = getString(R.string.welcome_text)
                 descriptionTextView.text = getString(R.string.description1)
                 btn.visibility = (View.INVISIBLE);
             }
 
             if (pos == 1){
-                img.setImageResource(R.drawable.img2)
+                img.setImageResource(R.drawable.tutorial2)
                 titleTextView.text = getString(R.string.list_services)
                 descriptionTextView.text = getString(R.string.description2)
                 btn.visibility = (View.INVISIBLE);
             }
 
             if (pos == 2){
-                img.setImageResource(R.drawable.viewpager_img_3)
+                img.setImageResource(R.drawable.tutorial3)
                 titleTextView.text = getString(R.string.location)
                 descriptionTextView.text = getString(R.string.description3)
                 btn.visibility = (View.VISIBLE);

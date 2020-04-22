@@ -1,6 +1,5 @@
 package com.example.android.proximo.ui
 
-import android.R
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -13,9 +12,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -23,6 +19,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.birjuvachhani.locus.Locus
+import com.example.android.proximo.R
 import com.example.android.proximo.databinding.LocationFragmentBinding
 import com.example.android.proximo.viewmodels.LocationViewModel
 import com.tomtom.online.sdk.search.OnlineSearchApi
@@ -31,10 +28,8 @@ import com.tomtom.online.sdk.search.data.reversegeocoder.ReverseGeocoderSearchRe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import java.io.IOException
 
-class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
-    private lateinit var districtSpinner: Spinner
+class LocationFragment : Fragment() {
     private val PERMISSION_ID = 42
     private lateinit var district: String
     private lateinit var county: String
@@ -141,6 +136,7 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun isLocationEnabled(): Boolean {
+        Log.d("location", "isLocationEnabled")
         val locationManager: LocationManager = (activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager)
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
                 LocationManager.NETWORK_PROVIDER
@@ -148,6 +144,7 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun checkPermissions(): Boolean {
+        Log.d("location", "checkPermissions")
         if (context?.let { ActivityCompat.checkSelfPermission(it, Manifest.permission.ACCESS_COARSE_LOCATION) } == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return true
@@ -156,23 +153,20 @@ class LocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun requestPermissions() {
-        activity?.let { ActivityCompat.requestPermissions(it, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_ID) }
-        getLastLocation()
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (requestCode == PERMISSION_ID) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                getLastLocation()
-            }
+        Log.d("location", "requestPermissions")
+        activity?.let {
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_ID)
         }
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        // Another interface callback
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        //parent?.getItemAtPosition(position)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        Log.d("location", "onRequestPermissionsResult")
+        if (requestCode == PERMISSION_ID) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                getLastLocation()
+            } else {
+                findNavController().navigate(R.id.action_locationFragment_to_changeLocationFragment)
+            }
+        }
     }
 }

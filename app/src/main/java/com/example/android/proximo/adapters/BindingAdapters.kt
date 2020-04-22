@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.android.proximo.R
 import com.example.android.proximo.models.Category
 import com.example.android.proximo.models.Company
+import com.example.android.proximo.models.Contacts
 import com.example.android.proximo.models.Schedule
 import com.example.android.proximo.viewmodels.ApiStatus
 import com.example.android.proximo.viewmodels.LocationStatus
@@ -69,10 +70,10 @@ fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
 @BindingAdapter("homeDelivery")
 fun homeDeliveryText(text: TextView, homeDelivery: Boolean) {
     if (homeDelivery){
-        text.text = "Entregas ao domicílio: Sim"
+        text.text = "Sim"
     }
     else{
-        text.text = "Entregas ao domicílio: Não"
+        text.text = "Não"
     }
 }
 
