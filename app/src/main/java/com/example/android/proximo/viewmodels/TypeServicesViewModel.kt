@@ -15,7 +15,7 @@ import kotlin.coroutines.CoroutineContext
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 
-class TypeServicesViewModel(county: String, app: Application) : AndroidViewModel(app) {
+class TypeServicesViewModel(county: String, district: String, app: Application) : AndroidViewModel(app) {
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<MarsApiStatus>()

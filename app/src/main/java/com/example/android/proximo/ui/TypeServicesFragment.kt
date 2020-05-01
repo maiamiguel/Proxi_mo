@@ -28,9 +28,13 @@ class TypeServicesFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val county : String = TypeServicesFragmentArgs.fromBundle(requireArguments()).county
-        val viewModelFactory = TypeServiceViewModelFactory(county, application)
+        val district : String = TypeServicesFragmentArgs.fromBundle(requireArguments()).district
+        val viewModelFactory = TypeServiceViewModelFactory(county, district, application)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(TypeServicesViewModel::class.java)
+
+        // Setting actionBar title
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "$district, $county"
 
         binding.viewModel = viewModel
 

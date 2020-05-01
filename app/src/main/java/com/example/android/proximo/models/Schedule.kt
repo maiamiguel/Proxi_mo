@@ -16,7 +16,7 @@ class Schedule (
     val wednesday: List<String>,
 
     @Json(name = "quinta-feira")
-    val thrusday: List<String>,
+    val thursday: List<String>,
 
     @Json(name = "sexta-feira")
     val friday: List<String>,

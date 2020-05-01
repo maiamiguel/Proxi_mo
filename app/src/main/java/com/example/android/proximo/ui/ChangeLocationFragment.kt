@@ -2,6 +2,7 @@ package com.example.android.proximo.ui
 
 import android.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.example.android.proximo.viewmodels.ChangeLocationViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class ChangeLocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
+    private var selectedDistrict: String? = null
     private var selectedCounty: String? = null
     private val counties: MutableList<String> = ArrayList()
     private val districts: MutableList<String> = ArrayList()
@@ -43,6 +45,10 @@ class ChangeLocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         viewModel.districts.observe(viewLifecycleOwner, Observer {
             districts.addAll(it)
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            Log.d("debug", "STATUS CHANGED ${it}")
         })
 
         // Creating adapter for District spinner
@@ -76,7 +82,7 @@ class ChangeLocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.ackBTN.setOnClickListener {
             if (selectedCounty != null && selectedCounty != "Concelho:") {
-                findNavController().navigate(ChangeLocationFragmentDirections.actionChangeLocationFragmentToTypesServicesFragment(selectedCounty!!))
+                findNavController().navigate(ChangeLocationFragmentDirections.actionChangeLocationFragmentToTypesServicesFragment(selectedCounty!!, selectedDistrict!!))
             } else {
                 Snackbar.make(binding.rootLayout, "Por favor introduza uma localização válida.. ", Snackbar.LENGTH_SHORT).show()
             }
@@ -100,6 +106,7 @@ class ChangeLocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if (parent?.id == com.example.android.proximo.R.id.district) {
             if (parent.getItemAtPosition(position) != "Distrito:") {
                 viewModel.searchCounties(parent.getItemAtPosition(position).toString())
+                selectedDistrict = parent.getItemAtPosition(position).toString()
             }
             if (parent.getItemAtPosition(position) == "Distrito:" && selectedCounty != null) {
                 clearCounties()

@@ -40,6 +40,7 @@ class LocationFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.d("debug", "onCreateView")
         val binding = LocationFragmentBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
@@ -57,13 +58,15 @@ class LocationFragment : Fragment() {
         getLastLocation()
 
         viewModel.doneLocating.observe(viewLifecycleOwner, Observer {
-            binding.distrito.text = district
-            binding.concelho.text = county
-            binding.freguesia.text = parish
+            if (this::district.isInitialized && this::county.isInitialized && this::parish.isInitialized) {
+                binding.distrito.text = district
+                binding.concelho.text = county
+                binding.freguesia.text = parish
+            }
         })
 
         binding.ackBTN.setOnClickListener {
-            findNavController().navigate(LocationFragmentDirections.actionLocationFragmentToOverviewFragment(county))
+            findNavController().navigate(LocationFragmentDirections.actionLocationFragmentToOverviewFragment(county, district))
         }
 
         binding.changeLocation.setOnClickListener {
@@ -98,6 +101,7 @@ class LocationFragment : Fragment() {
     }
 
     private fun reverseGeocoder(latitude: Double, longitude: Double) {
+        Log.d("debug", "reverseGeocoder")
         try {
             val searchApi = context?.let { OnlineSearchApi.create(it) }
             searchApi?.reverseGeocoding(ReverseGeocoderSearchQueryBuilder(latitude, longitude).build())

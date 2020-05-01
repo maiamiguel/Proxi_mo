@@ -38,14 +38,14 @@ class WelcomeFragment : Fragment() {
                 img.setImageResource(R.drawable.tutorial1)
                 titleTextView.text = getString(R.string.welcome_text)
                 descriptionTextView.text = getString(R.string.description1)
-                btn.visibility = (View.INVISIBLE);
+                btn.visibility = (View.GONE);
             }
 
             if (pos == 1){
                 img.setImageResource(R.drawable.tutorial2)
                 titleTextView.text = getString(R.string.list_services)
                 descriptionTextView.text = getString(R.string.description2)
-                btn.visibility = (View.INVISIBLE);
+                btn.visibility = (View.GONE);
             }
 
             if (pos == 2){

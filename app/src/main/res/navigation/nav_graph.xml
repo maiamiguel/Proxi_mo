@@ -46,6 +46,9 @@
         <argument
             android:name="county" />
 
+        <argument
+            android:name="district" />
+
         <action
             android:id="@+id/action_showServices"
             app:destination="@id/servicesFragment" />

@@ -10,189 +10,241 @@
             type="com.example.android.proximo.viewmodels.SpecificViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:id="@+id/context_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/viewPagerDefault"
-        android:orientation="vertical">
+        android:fadeScrollbars="false"
+        android:fillViewport="true">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="35dp"
-            app:cardCornerRadius="20dp">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="35dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/service_logo"
-                    imageUrl="@{viewModel.selectedCompany.images.logo}"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@{viewModel.selectedCompany.name}"
-                    android:textAlignment="viewStart"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/address"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/service_logo" />
+                    <ImageView
+                        android:id="@+id/service_logo"
+                        imageUrl="@{viewModel.selectedCompany.images.logo}"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{viewModel.selectedCompany.address}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/addressLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/name" />
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@{viewModel.selectedCompany.name}"
+                        android:textAlignment="viewStart"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/address"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/service_logo" />
 
-                <TextView
-                    android:id="@+id/contacts"
-                    android:text="@{viewModel.selectedCompany.contacts.cellphone[0] + `, ` + viewModel.selectedCompany.contacts.telephone[0]}"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/contactsLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/address" />
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@{viewModel.selectedCompany.address}"
+                        app:layout_constraintBottom_toTopOf="@+id/telephone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/addressLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+                    <TextView
+                        android:id="@+id/telephone"
+                        contactsTelephone="@{viewModel.selectedCompany.contacts.telephone}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/cellphone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/telephoneLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/address" />
 
 
-                <TextView
-                    android:id="@+id/home_delivery"
-                    homeDelivery="@{viewModel.selectedCompany.home_delivery}"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/homeDeliveryLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/contacts" />
+                    <TextView
+                        android:id="@+id/home_delivery"
+                        homeDelivery="@{viewModel.selectedCompany.home_delivery}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/notes"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/homeDeliveryLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/cellphone" />
 
-                <TextView
-                    android:id="@+id/notes"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{viewModel.selectedCompany.notes}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/notesLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/home_delivery" />
+                    <TextView
+                        android:id="@+id/notes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        notesVisibility="@{viewModel.selectedCompany.notes}"
+                        app:layout_constraintBottom_toTopOf="@+id/facebookIMG"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/notesLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/home_delivery" />
 
-                <ImageView
-                    android:id="@+id/googleMapsIMG"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="24dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/facebookIMG"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/facebookIMG"
-                    app:srcCompat="@drawable/icon_location" />
+                    <ImageView
+                        android:id="@+id/googleMapsIMG"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toBottomOf="@+id/facebookIMG"
+                        app:layout_constraintEnd_toStartOf="@+id/facebookIMG"
+                        app:layout_constraintHorizontal_bias="0.6"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/facebookIMG"
+                        app:srcCompat="@drawable/icon_location" />
 
-                <ImageView
-                    android:id="@+id/facebookIMG"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="24dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/instagramIMG"
-                    app:layout_constraintStart_toEndOf="@+id/googleMapsIMG"
-                    app:srcCompat="@drawable/icon_facebook" />
+                    <ImageView
+                        android:id="@+id/facebookIMG"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/instagramIMG"
+                        app:layout_constraintStart_toEndOf="@+id/googleMapsIMG"
+                        app:layout_constraintTop_toBottomOf="@+id/notes"
+                        app:layout_constraintVertical_bias=".9"
+                        app:srcCompat="@drawable/icon_facebook" />
 
-                <ImageView
-                    android:id="@+id/instagramIMG"
-                    android:layout_width="50dp"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="24dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:tint="@color/viewPagerDefault"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/facebookIMG"
-                    app:layout_constraintTop_toTopOf="@+id/facebookIMG"
-                    app:srcCompat="@drawable/instagram" />
+                    <ImageView
+                        android:id="@+id/instagramIMG"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:tint="@color/viewPagerDefault"
+                        app:layout_constraintBottom_toBottomOf="@+id/facebookIMG"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/facebookIMG"
+                        app:layout_constraintTop_toTopOf="@+id/facebookIMG"
+                        app:srcCompat="@drawable/instagram" />
 
-                <TextView
-                    android:id="@+id/addressLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Morada:"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/address" />
+                    <TextView
+                        android:id="@+id/addressLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/addressLabel"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/address"
+                        app:layout_constraintEnd_toStartOf="@+id/address"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/address" />
 
-                <TextView
-                    android:id="@+id/contactsLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Telefone:"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/contacts" />
+                    <TextView
+                        android:id="@+id/telephoneLabel"
+                        contactsTelephoneLabel="@{viewModel.selectedCompany.contacts.telephone}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/telephoneLabel"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/telephone"
+                        app:layout_constraintEnd_toStartOf="@+id/telephone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/telephone" />
 
-                <TextView
-                    android:id="@+id/homeDeliveryLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Entregas ao domicílio:"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/home_delivery" />
+                    <TextView
+                        android:id="@+id/homeDeliveryLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/homeDeliveryLabel"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/home_delivery"
+                        app:layout_constraintEnd_toStartOf="@+id/home_delivery"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/home_delivery" />
 
-                <TextView
-                    android:id="@+id/notesLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Notas:"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/notes" />
+                    <TextView
+                        android:id="@+id/notesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/notesLabel"
+                        notesVisibilityLabel="@{viewModel.selectedCompany.notes}"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/notes"
+                        app:layout_constraintEnd_toStartOf="@+id/notes"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/notes" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/cellphoneLabel"
+                        contactsCellphoneLabel="@{viewModel.selectedCompany.contacts.cellphone}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/cellphoneLabel"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/cellphone"
+                        app:layout_constraintEnd_toStartOf="@+id/cellphone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/cellphone" />
+
+                    <TextView
+                        android:id="@+id/cellphone"
+                        contactsCellphone="@{viewModel.selectedCompany.contacts.cellphone}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/home_delivery"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cellphoneLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/telephone" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

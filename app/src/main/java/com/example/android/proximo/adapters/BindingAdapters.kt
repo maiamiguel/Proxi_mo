@@ -1,6 +1,6 @@
 package com.example.android.proximo.adapters
 
-import android.util.Log
+import android.opengl.Visibility
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,8 +15,11 @@ import com.example.android.proximo.models.Company
 import com.example.android.proximo.models.Contacts
 import com.example.android.proximo.models.Schedule
 import com.example.android.proximo.viewmodels.ApiStatus
+import com.example.android.proximo.viewmodels.ChangeLocationStatus
 import com.example.android.proximo.viewmodels.LocationStatus
 import com.example.android.proximo.viewmodels.MarsApiStatus
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
@@ -69,10 +72,9 @@ fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
 
 @BindingAdapter("homeDelivery")
 fun homeDeliveryText(text: TextView, homeDelivery: Boolean) {
-    if (homeDelivery){
+    if (homeDelivery) {
         text.text = "Sim"
-    }
-    else{
+    } else {
         text.text = "Não"
     }
 }
@@ -100,7 +102,31 @@ fun infoCount(statusImageView: ImageView, status: ApiStatus?) {
 
 @BindingAdapter("timetable")
 fun setTimetable(text: TextView, schedule: Schedule) {
-    text.text = schedule.monday[0] + "\n" + schedule.monday[1]
+    val calendar: Calendar = Calendar.getInstance()
+
+    when (calendar.get(Calendar.DAY_OF_WEEK)) {
+        Calendar.MONDAY -> {
+            text.text = schedule.monday[0]
+        }
+        Calendar.TUESDAY -> {
+            text.text = schedule.tuesday[0]
+        }
+        Calendar.WEDNESDAY -> {
+            text.text = schedule.wednesday[0]
+        }
+        Calendar.THURSDAY -> {
+            text.text = schedule.thursday[0]
+        }
+        Calendar.FRIDAY -> {
+            text.text = schedule.friday[0]
+        }
+        Calendar.SATURDAY -> {
+            text.text = schedule.saturday[0]
+        }
+        Calendar.SUNDAY -> {
+            text.text = schedule.sunday[0]
+        }
+    }
 }
 
 @BindingAdapter("locationStatusImage")
@@ -147,5 +173,112 @@ fun locationStatusText(view: TextView, status: LocationStatus?) {
         LocationStatus.DONE -> {
             view.setText(R.string.confirm_location)
         }
+    }
+}
+
+@BindingAdapter("changeLocationStatusImage")
+fun changeLocationStatusImage(statusImageView: ImageView, status: ChangeLocationStatus?) {
+    when (status) {
+        ChangeLocationStatus.LOCATING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+        ChangeLocationStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        ChangeLocationStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+    }
+}
+
+@BindingAdapter("changeLocationStatusText")
+fun changeLocationStatusText(view: TextView, status: ChangeLocationStatus?) {
+    when (status) {
+        ChangeLocationStatus.ERROR -> {
+            view.setText(R.string.error)
+        }
+        ChangeLocationStatus.DONE -> {
+            view.setText(R.string.changeLocationText)
+        }
+    }
+}
+
+@BindingAdapter("visibilityChangeLocationStatus")
+fun visibilityChangeLocationStatus(view: View, status: ChangeLocationStatus?) {
+    when (status) {
+        ChangeLocationStatus.LOCATING -> {
+            view.visibility = View.INVISIBLE
+        }
+        ChangeLocationStatus.ERROR -> {
+            view.visibility = View.INVISIBLE
+        }
+        ChangeLocationStatus.DONE -> {
+            view.visibility = View.VISIBLE
+        }
+    }
+}
+
+@BindingAdapter("contactsCellphone")
+fun contactsCellphone(text: TextView, contacts: List<String>) {
+    if (contacts.isNullOrEmpty()){
+        text.visibility = View.GONE
+    }
+    else{
+        text.visibility = View.VISIBLE
+        text.text = contacts[0]
+    }
+}
+
+@BindingAdapter("contactsCellphoneLabel")
+fun contactsCellphoneLabel(text: TextView, contacts: List<String>) {
+    if (contacts.isNullOrEmpty()){
+        text.visibility = View.GONE
+    }
+    else{
+        text.visibility = View.VISIBLE
+    }
+}
+
+@BindingAdapter("contactsTelephone")
+fun contactsTelephone(text: TextView, contacts: List<String>) {
+    if (contacts.isNullOrEmpty()){
+        text.visibility = View.GONE
+    }
+    else{
+        text.visibility = View.VISIBLE
+        text.text = contacts[0]
+    }
+}
+
+@BindingAdapter("contactsTelephoneLabel")
+fun contactsTelephoneLabel(text: TextView, contacts: List<String>) {
+    if (contacts.isNullOrEmpty()){
+        text.visibility = View.GONE
+    }
+    else{
+        text.visibility = View.VISIBLE
+    }
+}
+
+@BindingAdapter("notesVisibility")
+fun notesVisibility(text: TextView, notes: String) {
+    if (notes.isEmpty()){
+        text.visibility = View.GONE
+    }
+    else{
+        text.visibility = View.VISIBLE
+        text.text = notes
+    }
+}
+
+@BindingAdapter("notesVisibilityLabel")
+fun notesVisibilityLabel(text: TextView, notes: String) {
+    if (notes.isEmpty()){
+        text.visibility = View.GONE
+    }
+    else{
+        text.visibility = View.VISIBLE
     }
 }

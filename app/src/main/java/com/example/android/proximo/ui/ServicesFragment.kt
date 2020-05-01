@@ -26,7 +26,7 @@ class ServicesFragment : Fragment() {
         val county : String = ServicesFragmentArgs.fromBundle(requireArguments()).county
 
         // Setting actionBar title
-        (activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices.display
+        //(activity as? AppCompatActivity)?.supportActionBar?.title = selectedTypesOfServices.display
 
         val viewModelFactory = ServicesViewModelFactory(selectedTypesOfServices, county, application)
 
@@ -43,14 +43,14 @@ class ServicesFragment : Fragment() {
         binding.rv.adapter = adapter
 
         viewModel.properties.observe(
-                this.viewLifecycleOwner,
-                Observer { t ->
-                    t.let {
-                        // Sets new Data to RecyclerView
-                        Log.d("debug", "setServicesList changed")
-                        adapter.setServicesList(it)
-                    }
-                })
+            this.viewLifecycleOwner,
+            Observer { t ->
+                t.let {
+                    // Sets new Data to RecyclerView
+                    Log.d("debug", "setServicesList changed")
+                    adapter.setServicesList(it)
+                }
+            })
 
         // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
         // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready

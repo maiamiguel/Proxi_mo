@@ -28,4 +28,9 @@
     <string name="changeLocation">Alterar localização</string>
     <string name="confirm">Confirmar</string>
     <string name="change">Alterar</string>
+    <string name="cellphoneLabel">Telemóvel:</string>
+    <string name="notesLabel">Notas:</string>
+    <string name="telephoneLabel">Telefone:</string>
+    <string name="homeDeliveryLabel">Entregas ao domicílio:</string>
+    <string name="addressLabel">Morada:</string>
 </resources>
