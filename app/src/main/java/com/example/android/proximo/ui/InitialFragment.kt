@@ -19,13 +19,10 @@ class InitialFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentInitialBinding.inflate(inflater)
 
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
         val sharedPref : SharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE)!!
         val tutorialDone = sharedPref.getBoolean(getString(R.string.introTutorial), false)
-
-        Log.d("debug", "SHARED PREFERECES ${tutorialDone}")
 
         val textView = binding.title
         val proxima = Typeface.createFromAsset(context?.assets, "fonts/Proxima_Nova_Bold.otf")

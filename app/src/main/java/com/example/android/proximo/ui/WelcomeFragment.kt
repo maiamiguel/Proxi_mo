@@ -65,7 +65,6 @@ class WelcomeFragment : Fragment() {
         return binding.root
     }
 
-    // newInstance constructor for creating fragment with arguments
     fun newInstance(page: Int): WelcomeFragment? {
         val fragmentFirst = WelcomeFragment()
         val args = Bundle()

@@ -36,33 +36,22 @@ class ChangeLocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        // Spinner element
         spinnerDistrict = binding.district
         spinnerCounty = binding.county
 
-        // Spinner Drop down elements
         districts.add(resources.getString(com.example.android.proximo.R.string.district))
 
         viewModel.districts.observe(viewLifecycleOwner, Observer {
             districts.addAll(it)
         })
 
-        viewModel.status.observe(viewLifecycleOwner, Observer {
-            Log.d("debug", "STATUS CHANGED ${it}")
-        })
-
-        // Creating adapter for District spinner
         val dataAdapterDistrict: ArrayAdapter<String> = ArrayAdapter<String>(context!!, R.layout.simple_spinner_item, districts)
-        // Drop down layout style - list view with radio button
         dataAdapterDistrict.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        // attaching data adapter to spinner
         spinnerDistrict.adapter = dataAdapterDistrict
-        // Spinner click listener
         spinnerDistrict.onItemSelectedListener = this
 
         // ------------------------------------------------------------------------------------- //
 
-        // Spinner Drop down elements
         counties.add(resources.getString(com.example.android.proximo.R.string.county))
 
         viewModel.counties.observe(viewLifecycleOwner, Observer {
@@ -71,13 +60,9 @@ class ChangeLocationFragment : Fragment(), AdapterView.OnItemSelectedListener {
             counties.addAll(it)
         })
 
-        // Creating adapter for County spinner
         dataAdapterCounty = ArrayAdapter<String>(context!!, R.layout.simple_spinner_item, counties)
-        // Drop down layout style - list view with radio button
         dataAdapterCounty.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        // attaching data adapter to spinner
         spinnerCounty.adapter = dataAdapterCounty
-        // Spinner click listener
         spinnerCounty.onItemSelectedListener = this
 
         binding.ackBTN.setOnClickListener {

@@ -33,4 +33,5 @@
     <string name="telephoneLabel">Telefone:</string>
     <string name="homeDeliveryLabel">Entregas ao domicílio:</string>
     <string name="addressLabel">Morada:</string>
+    <string name="contribute">Contribua para a plataforma!</string>
 </resources>

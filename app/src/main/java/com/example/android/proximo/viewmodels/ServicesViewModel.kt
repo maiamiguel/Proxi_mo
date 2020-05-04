@@ -1,7 +1,10 @@
 package com.example.android.proximo.viewmodels
 
 import android.app.Application
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.*
 import com.example.android.proximo.models.*
 import com.example.android.proximo.network.Api
@@ -10,10 +13,8 @@ import kotlinx.coroutines.launch
 enum class ApiStatus { LOADING, ERROR, DONE, NONE }
 
 class ServicesViewModel(selectedTypesOfServices: Category, county: String, app: Application) : AndroidViewModel(app) {
-    // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ApiStatus>()
 
-    // The external immutable LiveData for the request status
     val status: LiveData<ApiStatus>
         get() = _status
 
@@ -35,7 +36,6 @@ class ServicesViewModel(selectedTypesOfServices: Category, county: String, app: 
 
     private fun companies_by_location(typeOfService : Category, county : String){
         viewModelScope.launch {
-            // Get the Deferred object for our Retrofit request
             val getPropertiesDeferred =  Api.retrofitService.companies_by_locationAsync(county)
             try {
                 _status.value = ApiStatus.LOADING
@@ -59,9 +59,10 @@ class ServicesViewModel(selectedTypesOfServices: Category, county: String, app: 
                     _status.value = ApiStatus.NONE
                 }
             } catch (e: Exception) {
-                Log.e("error", e.toString())
-//                _services.value = ArrayList()
                 _status.value = ApiStatus.ERROR
+                Log.e("error", e.toString())
+                _services.value = ArrayList()
+
             }
         }
     }

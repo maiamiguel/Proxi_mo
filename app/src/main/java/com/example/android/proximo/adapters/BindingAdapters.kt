@@ -1,6 +1,5 @@
 package com.example.android.proximo.adapters
 
-import android.opengl.Visibility
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,28 +11,30 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.android.proximo.R
 import com.example.android.proximo.models.Category
 import com.example.android.proximo.models.Company
-import com.example.android.proximo.models.Contacts
 import com.example.android.proximo.models.Schedule
 import com.example.android.proximo.viewmodels.ApiStatus
 import com.example.android.proximo.viewmodels.ChangeLocationStatus
 import com.example.android.proximo.viewmodels.LocationStatus
 import com.example.android.proximo.viewmodels.MarsApiStatus
 import java.util.*
-import kotlin.collections.ArrayList
 
-/**
- * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
- */
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Category>?) {
     val adapter = recyclerView.adapter as TypeServicesAdapter
     adapter.submitList(data)
 }
 
-@BindingAdapter("listDataServices")
-fun bindRecyclerViewServices(recyclerView: RecyclerView, data: List<Company>) {
+@BindingAdapter("listServices")
+fun listServices(recyclerView: RecyclerView, data: List<Company>?) {
     val adapter = recyclerView.adapter as ServiceItemAdapter
-    adapter.setServicesList(data as ArrayList<Company>)
+    recyclerView.visibility = View.VISIBLE
+
+    if (data != null) {
+        adapter.setServicesList(data)
+    }
+    else{
+        recyclerView.visibility = View.INVISIBLE
+    }
 }
 
 /**
@@ -96,6 +97,24 @@ fun infoCount(statusImageView: ImageView, status: ApiStatus?) {
         }
         ApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
+        }
+    }
+}
+
+@BindingAdapter("textStatus")
+fun textStatus(textView: TextView, status: ApiStatus?) {
+    when (status) {
+        ApiStatus.LOADING -> {
+            textView.visibility = View.GONE
+        }
+        ApiStatus.ERROR -> {
+            textView.visibility = View.GONE
+        }
+        ApiStatus.NONE -> {
+            textView.visibility = View.VISIBLE
+        }
+        ApiStatus.DONE -> {
+            textView.visibility = View.GONE
         }
     }
 }

@@ -22,10 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        //TODO: This is not ok to do. Not a good pratice. Needs change! (no time now)
-        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT//Set Portrait
-
-        // Configure the navigation
         val navController = findNavController(R.id.myNavHostFragment)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
