@@ -36,7 +36,7 @@
 <img src="https://github.com/maiamiguel/testeREADME/blob/master/home_screen.png" width="400">
 
 #### Or combine 3 of them as:
-![3images](https://github.com/maiamiguel/testeREADME/blob/master/tutorial1.png)
+![3images](https://github.com/maiamiguel/testeREADME/blob/master/tutorial.jpg)
 
 #### After detecting user location:
 <img src="https://github.com/maiamiguel/testeREADME/blob/master/location.png" width="400">
